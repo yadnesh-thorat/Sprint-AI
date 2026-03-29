@@ -1,0 +1,16 @@
+# E-Commerce Platform - Software Requirement Specification (SRS)
+
+## 1. Introduction
+This document defines the architecture and requirements for the new B2C E-Commerce Platform.
+
+## 2. Functional Requirements
+- **User Authentication:** Users must be able to register, log in, and manage their profile using email/password or OAuth (Google).
+- **Product Catalog:** The system should display products in grid view with filtering (price, category) and search capabilities.
+- **Shopping Cart & Checkout:** Users can add items to a cart, update quantities, and proceed to a secure checkout.
+- **Payment Gateway:** Integration with Stripe to handle Credit Card payments.
+- **Order Management:** Users can view their order history and track shipping status.
+
+## 3. Non-Functional Requirements
+- **Performance:** App must load under 2 seconds.
+- **Security:** Passwords must be hashed using bcrypt. Payment data must not be stored in our database.
+- **Database:** PostgreSQL for relational data consistency.

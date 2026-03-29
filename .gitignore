@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+
+# Production Build
+dist/
+dist-ssr/
+*.local
+
+# Environment Variables
+.env
+.env.*
+!.env.example
+
+# Configs
+.DS_Store
+Thumbs.db
+
+# Project-Specific
+backend/node_modules/
+frontend/node_modules/
+backend/.env
+frontend/.env
+backend/public/
+frontend/public/

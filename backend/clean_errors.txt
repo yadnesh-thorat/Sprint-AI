@@ -1,0 +1,37 @@
+
+> Task :compileJava
+C:\Users\yadne\OneDrive\Desktop\Jira\backend\src\main\java\com\autosprint\api\security\SecurityConfig.java:24: error: method cors in class HttpSecurity cannot be applied to given types;
+            .cors().and().csrf().disable()
+            ^
+  required: Customizer<CorsConfigurer<HttpSecurity>>
+  found:    no arguments
+  reason: actual and formal argument lists differ in length
+Note: C:\Users\yadne\OneDrive\Desktop\Jira\backend\src\main\java\com\autosprint\api\service\AiService.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+1 error
+
+> Task :compileJava FAILED
+
+[Incubating] Problems report is available at: file:///C:/Users/yadne/OneDrive/Desktop/Jira/backend/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileJava'.
+> Compilation failed; see the compiler output below.
+  C:\Users\yadne\OneDrive\Desktop\Jira\backend\src\main\java\com\autosprint\api\security\SecurityConfig.java:24: error: method cors in class HttpSecurity cannot be applied to given types;
+              .cors().and().csrf().disable()
+              ^
+    required: Customizer<CorsConfigurer<HttpSecurity>>
+    found:    no arguments
+    reason: actual and formal argument lists differ in length
+  Note: C:\Users\yadne\OneDrive\Desktop\Jira\backend\src\main\java\com\autosprint\api\service\AiService.java uses unchecked or unsafe operations.
+  Note: Recompile with -Xlint:unchecked for details.
+  1 error
+
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+
+BUILD FAILED in 5s
+1 actionable task: 1 executed

@@ -1,0 +1,5 @@
+{
+  "name": "E-commerce Website",
+  "deadline": "2026-04-15",
+  "content": "1. Introduction\nThis document describes the requirements for an E-commerce web application that allows users to browse products, place orders, and manage accounts.\n2. Overall Description\nThe system provides an online platform for buying and selling products. It supports customers, admins, and sellers.\n3. Functional Requirements\nUser Registration & Login: Users can create accounts and log in.\nProduct Browsing: Users can view products by category.\nCart System: Users can add/remove products.\nOrder Management: Users can place and track orders.\nPayment Integration: Support for online payments.\nAdmin Panel: Manage users, products, and orders.\n4. Non-Functional Requirements\nPerformance: System should handle 1000+ users.\nSecurity: Data encryption and secure authentication.\nScalability: System should support scaling.\nUsability: Easy-to-use UI.\n5. System Architecture\nFrontend: React.js\nBackend: Spring Boot\nDatabase: PostgreSQL\n6. User Roles\nCustomer, Admin, Seller\n7. Constraints\nInternet connectivity required.\nModern browser support required."
+}

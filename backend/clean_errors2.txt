@@ -1,0 +1,10 @@
+
+> Task :compileJava
+Note: C:\Users\yadne\OneDrive\Desktop\Jira\backend\src\main\java\com\autosprint\api\service\AiService.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+[Incubating] Problems report is available at: file:///C:/Users/yadne/OneDrive/Desktop/Jira/backend/build/reports/problems/problems-report.html
+
+BUILD SUCCESSFUL in 48s
+1 actionable task: 1 executed
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.4.1/userguide/configuration_cache_enabling.html

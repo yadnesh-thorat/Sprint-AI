@@ -1,0 +1,79 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model accounts {
+  id       Int    @id @default(autoincrement())
+  name     String? 
+  email    String @unique
+  password String
+}
+
+model projects {
+  id           Int       @id @default(autoincrement())
+  name         String
+  deadline     DateTime? @db.Date
+  srs_documents srs_documents?
+  epics        epics[]
+}
+
+model srs_documents {
+  id         Int      @id @default(autoincrement())
+  content    String?
+  project_id Int?     @unique
+  projects   projects? @relation(fields: [project_id], references: [id], onDelete: Cascade)
+}
+
+model epics {
+  id         Int       @id @default(autoincrement())
+  title      String
+  project_id Int?
+  projects   projects?  @relation(fields: [project_id], references: [id], onDelete: Cascade)
+  stories    stories[]
+}
+
+model stories {
+  id                 Int      @id @default(autoincrement())
+  title              String
+  description        String?
+  acceptance_criteria String?
+  priority           String?
+  epic_id            Int?
+  epics              epics?    @relation(fields: [epic_id], references: [id], onDelete: Cascade)
+  tasks              tasks[]
+}
+
+model users {
+  id   Int    @id @default(autoincrement())
+  name String
+  role String
+  tasks tasks[]
+}
+
+model tasks {
+  id              Int      @id @default(autoincrement())
+  title           String
+  description     String?
+  estimated_hours Float?
+  story_points    Int?
+  required_role   String?
+  status          String?
+  assigned_to     Int?
+  story_id        Int?
+  users           users?     @relation(fields: [assigned_to], references: [id], onDelete: SetNull)
+  stories         stories?   @relation(fields: [story_id], references: [id], onDelete: Cascade)
+  subtasks        subtasks[]
+}
+
+model subtasks {
+  id      Int     @id @default(autoincrement())
+  title   String
+  done    Boolean @default(false)
+  task_id Int?
+  tasks   tasks?  @relation(fields: [task_id], references: [id], onDelete: Cascade)
+}

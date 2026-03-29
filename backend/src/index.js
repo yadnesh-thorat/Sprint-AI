@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 
 const authRoutes = require('./routes/auth');
 const apiRoutes = require('./routes/api');
@@ -17,17 +18,16 @@ BigInt.prototype.toJSON = function() {
 app.use(cors());
 app.use(express.json());
 
+// Serve Frontend Static Files
+app.use(express.static(path.join(__dirname, '../../frontend/dist')));
+
 // Routes
 app.use('/api/auth', authRoutes);
-
-// Protected Core APIs
-// Note: If you want /api/upload-srs or /api/project-board to be protected, 
-// add the middleware. Since Java's SecurityConfig allowed all temporarily or as needed, 
-// we will just not enforce it globally for /api/ unless desired.
 app.use('/api', apiRoutes);
 
-app.get('/', (req, res) => {
-    res.send('AutoSprint AI Backend Running on Node.js');
+// Catch-all for SPA Routing
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../frontend/dist/index.html'));
 });
 
 app.listen(PORT, () => {

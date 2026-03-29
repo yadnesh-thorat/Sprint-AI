@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "build": "npx prisma generate"
+    "build": "cd ../frontend && npm install && npm run build && cd ../backend && npx prisma generate"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",

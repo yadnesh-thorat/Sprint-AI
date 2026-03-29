@@ -1,11 +1,13 @@
 {
   "name": "autosprint-root",
   "version": "1.0.0",
-  "description": "Root configuration to run both Spring Boot backend and Vite frontend concurrently.",
+  "description": "Root configuration for unified deployment.",
   "scripts": {
     "dev": "concurrently \"npm run backend\" \"npm run frontend\"",
     "backend": "cd backend && npm run dev",
-    "frontend": "cd frontend && npm run dev"
+    "frontend": "cd frontend && npm run dev",
+    "build": "npm install && cd frontend && npm install && npm run build && cd ../backend && npm install && npx prisma generate",
+    "start": "cd backend && npm start"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"

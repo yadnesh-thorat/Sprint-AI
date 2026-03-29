@@ -25,8 +25,8 @@ app.use(express.static(path.join(__dirname, '../../frontend/dist')));
 app.use('/api/auth', authRoutes);
 app.use('/api', apiRoutes);
 
-// Catch-all for SPA Routing
-app.get('/:path*', (req, res) => {
+// Catch-all for SPA Routing (Last Middleware)
+app.use((req, res) => {
   res.sendFile(path.join(__dirname, '../../frontend/dist/index.html'));
 });
 

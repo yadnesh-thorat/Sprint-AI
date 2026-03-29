@@ -26,7 +26,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api', apiRoutes);
 
 // Catch-all for SPA Routing
-app.get('(.*)', (req, res) => {
+app.get('/:path*', (req, res) => {
   res.sendFile(path.join(__dirname, '../../frontend/dist/index.html'));
 });
 

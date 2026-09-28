@@ -1,15 +1,9 @@
 {
-  "name": "autosprint-root",
+  "name": "sprintx-ai",
   "version": "1.0.0",
-  "description": "Root configuration for unified deployment.",
+  "description": "SprintX AI — React + Tailwind + Supabase",
   "scripts": {
-    "dev": "concurrently \"npm run backend\" \"npm run frontend\"",
-    "backend": "cd backend && npm run dev",
-    "frontend": "cd frontend && npm run dev",
-    "build": "npm install && cd frontend && npm install && npm run build && cd ../backend && npm install && npx prisma generate",
-    "start": "cd backend && npm start"
-  },
-  "devDependencies": {
-    "concurrently": "^8.2.2"
+    "dev": "cd frontend && npm run dev",
+    "build": "cd frontend && npm install && npm run build"
   }
 }

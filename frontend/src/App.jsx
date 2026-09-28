@@ -9,12 +9,24 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Landing from './pages/Landing';
 
+import Admin from './pages/Admin';
+
 const RequireAuth = ({ children }) => {
   const { user, loading } = useAuth();
   const location = useLocation();
 
   if (loading) return null;
   return user ? children : <Navigate to="/login" state={{ from: location }} replace />;
+};
+
+const RequireSuperAdmin = ({ children }) => {
+  const { user, loading } = useAuth();
+  const location = useLocation();
+
+  if (loading) return null;
+  if (!user) return <Navigate to="/login" state={{ from: location }} replace />;
+  if (!user.isSuperAdmin) return <Navigate to="/board" replace />;
+  return children;
 };
 
 function App() {
@@ -45,6 +57,11 @@ function App() {
             <RequireAuth>
               <Layout><Board /></Layout>
             </RequireAuth>
+          } />
+          <Route path="/admin" element={
+            <RequireSuperAdmin>
+              <Layout><Admin /></Layout>
+            </RequireSuperAdmin>
           } />
           {/* Publicly Shareable Board Link */}
           <Route path="/board/:projectId" element={

@@ -152,20 +152,13 @@ export default function Landing() {
           </p>
 
           {/* Action CTAs */}
-          <div className="mt-7 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <div className="mt-7 flex items-center justify-center">
             <Link 
               to="/register" 
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-md font-semibold text-xs sm:text-sm bg-[#0052CC] hover:bg-[#0747A6] active:bg-[#00388B] text-white shadow-xs transition-colors"
             >
               <span>Import Requirements Document</span>
               <ArrowRight size={14} />
-            </Link>
-            
-            <Link 
-              to="/login"
-              className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-2.5 rounded-md font-semibold text-xs sm:text-sm bg-white hover:bg-slate-50 text-[#42526E] border border-[#DFE1E6] transition-colors"
-            >
-              <span>View Workspace Demo</span>
             </Link>
           </div>
 

@@ -26,7 +26,6 @@ import {
   Zap,
   MoreHorizontal,
   ExternalLink,
-  Sparkles,
   ArrowUp,
   ArrowDown,
   Minus,
@@ -479,15 +478,15 @@ export default function Board() {
 
             {/* Board Project Dropdown Menu */}
             {boardProjectDropdownOpen && (
-              <div className="absolute left-0 top-full mt-2 w-72 bg-white border border-[#DFE1E6] rounded-xl shadow-2xl py-2 z-50 animate-in fade-in zoom-in-95 duration-100 divide-y divide-gray-100">
-                <div className="px-3 py-1.5 flex items-center justify-between bg-slate-50/80 rounded-t-lg">
-                  <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Switch Project Board</span>
-                  <span className="text-[10px] font-extrabold bg-blue-100 text-[#0052CC] px-1.5 py-0.5 rounded">
+              <div className="absolute left-0 top-full mt-1.5 w-72 bg-white border border-[#DFE1E6] rounded-md shadow-lg py-1.5 z-50 divide-y divide-[#EBECF0]">
+                <div className="px-3 py-1.5 flex items-center justify-between bg-[#FAFBFC]">
+                  <span className="text-[10px] font-semibold text-[#5E6C84] uppercase tracking-wider">Switch Project Board</span>
+                  <span className="text-[10px] font-semibold bg-[#DEEBFF] text-[#0052CC] px-1.5 py-0.5 rounded">
                     {projects.length || 1}
                   </span>
                 </div>
 
-                <div className="py-1 max-h-60 overflow-y-auto divide-y divide-gray-50">
+                <div className="py-1 max-h-60 overflow-y-auto divide-y divide-[#EBECF0]">
                   {projects.map(p => {
                     const isSelected = p.id === project.id;
                     const initials = p.name ? p.name.slice(0, 3).toUpperCase() : 'SPX';
@@ -495,7 +494,7 @@ export default function Board() {
                       <div
                         key={p.id}
                         className={`w-full flex items-center justify-between px-3 py-2 text-left transition-colors group ${
-                          isSelected ? 'bg-blue-50 text-[#0052CC]' : 'hover:bg-slate-50 text-[#172B4D]'
+                          isSelected ? 'bg-[#DEEBFF]/40 text-[#0052CC]' : 'hover:bg-[#F4F5F7] text-[#172B4D]'
                         }`}
                       >
                         <button
@@ -507,15 +506,15 @@ export default function Board() {
                           className="flex items-center gap-2.5 min-w-0 flex-1 pr-2 text-left cursor-pointer"
                         >
                           <div 
-                            className={`w-6 h-6 rounded flex items-center justify-center text-[10px] font-black shrink-0 ${
-                              isSelected ? 'bg-[#0052CC] text-white' : 'bg-slate-200 text-slate-700'
+                            className={`w-6 h-6 rounded flex items-center justify-center text-[10px] font-bold shrink-0 ${
+                              isSelected ? 'bg-[#0052CC] text-white' : 'bg-[#EBECF0] text-[#42526E]'
                             }`}
                           >
                             {initials}
                           </div>
                           <div className="min-w-0 flex-1">
-                            <div className="text-xs font-bold truncate leading-tight">{p.name}</div>
-                            <div className="text-[10px] text-gray-500 truncate">
+                            <div className="text-xs font-semibold truncate leading-tight">{p.name}</div>
+                            <div className="text-[10px] text-[#5E6C84] truncate">
                               {p.deadline ? `Target: ${p.deadline}` : 'Scrum Active Sprint'}
                             </div>
                           </div>
@@ -532,7 +531,7 @@ export default function Board() {
                             setBoardProjectDropdownOpen(false);
                             setDeleteConfirmProject(p);
                           }}
-                          className="p-1 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors opacity-0 group-hover:opacity-100 cursor-pointer ml-1"
+                          className="p-1 text-[#6B778C] hover:text-red-600 hover:bg-red-50 rounded transition-colors opacity-0 group-hover:opacity-100 cursor-pointer ml-1"
                           title={`Delete board "${p.name}"`}
                         >
                           <Trash2 size={13} />
@@ -553,7 +552,7 @@ export default function Board() {
                 setQuickTaskForm({ title: '', role: 'FE', points: 3, assignedTo: '' });
                 setCreatingInCol('TODO');
               }}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-[#0052CC] hover:bg-[#0747A6] text-white transition-colors shadow-xs cursor-pointer"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-medium bg-[#0052CC] hover:bg-[#0747A6] active:bg-[#00388B] text-white transition-colors cursor-pointer"
               title="Create a new task on this sprint board"
             >
               <Plus size={14} />
@@ -562,7 +561,7 @@ export default function Board() {
 
             <button
               onClick={shareProject}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-semibold border transition-all ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-medium border transition-colors ${
                 copied
                   ? 'bg-[#E3FCEF] text-[#006644] border-[#ABF5D1]'
                   : 'bg-white text-[#42526E] border-[#DFE1E6] hover:bg-[#F4F5F7]'
@@ -574,10 +573,10 @@ export default function Board() {
 
             <Link
               to="/upload"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-300 transition-colors shadow-2xs"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-medium bg-white text-[#172B4D] hover:bg-[#F4F5F7] border border-[#DFE1E6] transition-colors"
             >
-              <Sparkles size={14} className="text-purple-600" />
-              <span>Ingest New SRS</span>
+              <FolderPlus size={14} className="text-[#0052CC]" />
+              <span>Import Requirements</span>
             </Link>
 
             {/* Manager Delete Board Action (Visible when viewing specific project) */}
@@ -585,7 +584,7 @@ export default function Board() {
               <button
                 type="button"
                 onClick={() => setDeleteConfirmProject(project)}
-                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 border border-red-200 transition-colors shadow-2xs cursor-pointer"
+                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded text-xs font-medium text-red-600 hover:text-red-700 bg-white hover:bg-red-50 border border-red-200 transition-colors cursor-pointer"
                 title={`Delete project "${project.name}"`}
               >
                 <Trash2 size={13} />
@@ -680,10 +679,10 @@ export default function Board() {
             return (
               <div
                 key={colKey}
-                className={`flex-1 min-w-0 bg-[#EBECF0]/80 rounded-xl p-2.5 sm:p-3 flex flex-col h-full border transition-all duration-150 overflow-hidden ${
+                className={`flex-1 min-w-0 bg-[#F4F5F7] rounded-lg p-2 sm:p-2.5 flex flex-col h-full border transition-colors overflow-hidden ${
                   dragOverCol === colKey 
-                    ? 'bg-[#DEEBFF] border-[#0052CC] ring-2 ring-[#0052CC]/30' 
-                    : 'border-[#DFE1E6]/70'
+                    ? 'bg-[#DEEBFF]/40 border-[#0052CC]' 
+                    : 'border-[#DFE1E6]'
                 }`}
                 onDragOver={handleDragOver}
                 onDragEnter={() => setDragOverCol(colKey)}
@@ -692,22 +691,22 @@ export default function Board() {
               >
                 
                 {/* Column Header */}
-                <div className="flex items-center justify-between px-1.5 py-1.5 mb-2.5 bg-white/70 rounded-lg border border-slate-200/50 backdrop-blur-xs flex-shrink-0">
+                <div className="flex items-center justify-between px-2 py-1.5 mb-2 bg-white rounded border border-[#DFE1E6] flex-shrink-0">
                   <div className="flex items-center gap-1.5 min-w-0">
-                    <span className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${colConfig.dot}`} />
-                    <span className="text-xs font-bold text-[#172B4D] tracking-wide uppercase truncate">
+                    <span className={`w-2 h-2 rounded-full flex-shrink-0 ${colConfig.dot}`} />
+                    <span className="text-xs font-semibold text-[#172B4D] tracking-wide uppercase truncate">
                       {colConfig.label}
                     </span>
                   </div>
                   <div className="flex items-center gap-1 flex-shrink-0">
-                    <span className="text-[10px] font-bold text-[#42526E] bg-white px-2 py-0.5 rounded border border-slate-200 shadow-2xs">
+                    <span className="text-[10px] font-semibold text-[#5E6C84] bg-[#FAFBFC] px-1.5 py-0.5 rounded border border-[#EBECF0]">
                       {tasksInCol.length}
                     </span>
                   </div>
                 </div>
 
                 {/* Column Card Container (Vertical Scroll Only) */}
-                <div className="space-y-2.5 overflow-y-auto flex-1 pr-1 custom-scrollbar">
+                <div className="space-y-2 overflow-y-auto flex-1 pr-0.5 custom-scrollbar">
                   {tasksInCol.map((task, idx) => {
                     const taskId = task.id || `SPX-${100 + idx}`;
                     const isSelected = selectedTask && String(selectedTask.id) === String(task.id);
@@ -718,18 +717,18 @@ export default function Board() {
                         draggable
                         onDragStart={(e) => handleDragStart(e, task)}
                         onClick={() => setSelectedTask(task)}
-                        className={`bg-white rounded-xl p-3 sm:p-3.5 shadow-xs border transition-all duration-150 cursor-grab active:cursor-grabbing hover:shadow-md hover:border-[#4C9AFF] group ${
+                        className={`bg-white rounded p-3 border transition-colors cursor-grab active:cursor-grabbing hover:border-[#4C9AFF] group shadow-2xs ${
                           isSelected ? 'ring-2 ring-[#0052CC] border-[#0052CC]' : 'border-[#DFE1E6]'
                         }`}
                       >
                         {/* Ticket Title */}
-                        <div className="text-xs font-semibold text-[#172B4D] leading-snug mb-2 group-hover:text-[#0052CC] transition-colors line-clamp-2">
+                        <div className="text-xs font-medium text-[#172B4D] leading-snug mb-2 group-hover:text-[#0052CC] transition-colors line-clamp-2">
                           {task.title}
                         </div>
 
                         {/* Story Parent Tag */}
                         {task.storyTitle && (
-                          <div className="text-[9px] font-medium text-[#5E6C84] bg-[#FAFBFC] border border-[#EBECF0] rounded px-1.5 py-0.5 mb-2.5 truncate max-w-full inline-block">
+                          <div className="text-[9px] font-medium text-[#5E6C84] bg-[#FAFBFC] border border-[#EBECF0] rounded px-1.5 py-0.5 mb-2 truncate max-w-full inline-block">
                             {task.storyTitle}
                           </div>
                         )}
@@ -777,9 +776,8 @@ export default function Board() {
                   })}
 
                   {tasksInCol.length === 0 && !creatingInCol && (
-                    <div className="h-28 flex flex-col items-center justify-center border-2 border-dashed border-slate-300 rounded-xl bg-white/40 text-slate-400 text-xs gap-1 transition-colors hover:bg-white/60">
-                      <Plus size={14} className="text-slate-300" />
-                      <span className="font-medium text-[11px]">Drop tickets here</span>
+                    <div className="h-20 flex flex-col items-center justify-center border border-dashed border-[#DFE1E6] rounded bg-white/60 text-[#5E6C84] text-xs">
+                      <span className="text-[11px]">No issues</span>
                     </div>
                   )}
 
@@ -790,7 +788,7 @@ export default function Board() {
                         e.preventDefault();
                         handleCreateSprintTask(colKey);
                       }}
-                      className="p-3 bg-white border-2 border-[#0052CC] rounded-xl shadow-md space-y-2.5 my-2 animate-in fade-in zoom-in-95 duration-100"
+                      className="p-3 bg-white border border-[#0052CC] rounded shadow-xs space-y-2.5 my-1.5"
                     >
                       <textarea
                         autoFocus
@@ -807,16 +805,16 @@ export default function Board() {
                             setCreatingInCol(null);
                           }
                         }}
-                        className="w-full text-xs p-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-[#0052CC] text-[#172B4D] resize-none"
+                        className="w-full text-xs p-2 border border-[#DFE1E6] rounded focus:outline-none focus:border-[#0052CC] focus:ring-1 focus:ring-[#0052CC] text-[#172B4D] resize-none"
                       />
 
                       <div className="grid grid-cols-2 gap-2">
                         <div>
-                          <label className="block text-[9px] font-bold text-gray-500 uppercase tracking-wider mb-0.5">Role</label>
+                          <label className="block text-[9px] font-semibold text-[#5E6C84] uppercase tracking-wider mb-0.5">Role</label>
                           <select
                             value={quickTaskForm.role}
                             onChange={e => setQuickTaskForm({ ...quickTaskForm, role: e.target.value })}
-                            className="w-full text-[11px] p-1.5 border border-slate-200 rounded-md bg-[#FAFBFC] font-semibold text-slate-800"
+                            className="w-full text-[11px] p-1.5 border border-[#DFE1E6] rounded bg-[#FAFBFC] font-medium text-[#172B4D]"
                           >
                             <option value="FE">Frontend (FE)</option>
                             <option value="BE">Backend (BE)</option>
@@ -829,11 +827,11 @@ export default function Board() {
                         </div>
 
                         <div>
-                          <label className="block text-[9px] font-bold text-gray-500 uppercase tracking-wider mb-0.5">Assignee</label>
+                          <label className="block text-[9px] font-semibold text-[#5E6C84] uppercase tracking-wider mb-0.5">Assignee</label>
                           <select
                             value={quickTaskForm.assignedTo}
                             onChange={e => setQuickTaskForm({ ...quickTaskForm, assignedTo: e.target.value })}
-                            className="w-full text-[11px] p-1.5 border border-slate-200 rounded-md bg-[#FAFBFC] font-semibold text-slate-800 truncate"
+                            className="w-full text-[11px] p-1.5 border border-[#DFE1E6] rounded bg-[#FAFBFC] font-medium text-[#172B4D] truncate"
                           >
                             <option value="">Unassigned</option>
                             {availableMembers.map(m => (
@@ -843,25 +841,25 @@ export default function Board() {
                         </div>
                       </div>
 
-                      <div className="flex items-center justify-end gap-2 pt-1 border-t border-slate-100">
+                      <div className="flex items-center justify-end gap-2 pt-1.5 border-t border-[#EBECF0]">
                         <button
                           type="button"
                           onClick={() => setCreatingInCol(null)}
-                          className="px-3 py-1.5 text-xs font-semibold text-gray-600 hover:bg-gray-100 rounded cursor-pointer transition-colors"
+                          className="px-2.5 py-1 text-xs font-medium text-[#42526E] hover:bg-[#EBECF0] rounded cursor-pointer transition-colors"
                         >
                           Cancel
                         </button>
                         <button
                           type="submit"
                           disabled={isSubmittingTask || !quickTaskForm.title.trim()}
-                          className="px-3.5 py-1.5 bg-[#0052CC] hover:bg-[#0747A6] text-white text-xs font-bold rounded shadow-xs transition-colors flex items-center gap-1 disabled:opacity-50 cursor-pointer"
+                          className="px-3 py-1 bg-[#0052CC] hover:bg-[#0747A6] active:bg-[#00388B] text-white text-xs font-medium rounded transition-colors flex items-center gap-1 disabled:opacity-50 cursor-pointer"
                         >
                           {isSubmittingTask ? (
                             <Loader2 size={12} className="animate-spin" />
                           ) : (
                             <Plus size={13} />
                           )}
-                          <span>Add Task</span>
+                          <span>Add</span>
                         </button>
                       </div>
                     </form>
@@ -876,9 +874,9 @@ export default function Board() {
                       setQuickTaskForm({ title: '', role: 'FE', assignedTo: '' });
                       setCreatingInCol(colKey);
                     }}
-                    className="mt-2 w-full py-2 px-3 text-xs font-bold text-[#5E6C84] hover:text-[#172B4D] hover:bg-white/80 rounded-lg border border-transparent hover:border-slate-200 transition-colors flex items-center justify-center gap-1.5 cursor-pointer group shrink-0"
+                    className="mt-1.5 w-full py-1.5 px-2 text-xs font-medium text-[#5E6C84] hover:text-[#172B4D] hover:bg-white rounded border border-transparent hover:border-[#DFE1E6] transition-colors flex items-center justify-center gap-1 cursor-pointer shrink-0"
                   >
-                    <Plus size={14} className="group-hover:scale-110 transition-transform text-[#0052CC]" />
+                    <Plus size={13} className="text-[#0052CC]" />
                     <span>Create in {colConfig.label}</span>
                   </button>
                 )}
@@ -1043,47 +1041,47 @@ export default function Board() {
       {/* DELETE PROJECT CONFIRMATION MODAL */}
       {/* ========================================================= */}
       {deleteConfirmProject && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl shadow-2xl border border-red-200 w-full max-w-md overflow-hidden animate-in fade-in zoom-in-95 duration-150">
-            <div className="px-6 py-4 border-b border-red-100 flex items-center justify-between bg-red-50/60">
+        <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-lg shadow-xl border border-[#DFE1E6] w-full max-w-md overflow-hidden animate-in fade-in duration-150">
+            <div className="px-5 py-4 border-b border-[#EBECF0] flex items-center justify-between bg-white">
               <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-xl bg-red-600 text-white flex items-center justify-center font-bold shadow-xs">
-                  <Trash2 size={18} />
+                <div className="w-8 h-8 rounded bg-red-50 text-red-600 flex items-center justify-center font-bold">
+                  <Trash2 size={16} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-sm text-red-950">Delete Project Board</h3>
-                  <p className="text-[11px] text-red-600">Permanently delete board & all sprint tasks</p>
+                  <h3 className="font-semibold text-sm text-[#172B4D]">Delete Project Board</h3>
+                  <p className="text-[11px] text-[#5E6C84]">Permanently delete board & all sprint tasks</p>
                 </div>
               </div>
               <button 
                 onClick={() => setDeleteConfirmProject(null)}
-                className="p-1 rounded text-gray-400 hover:text-gray-700 hover:bg-gray-100 cursor-pointer transition-colors"
+                className="p-1 rounded text-[#6B778C] hover:text-[#172B4D] hover:bg-[#F4F5F7] cursor-pointer transition-colors"
               >
-                <X size={18} />
+                <X size={16} />
               </button>
             </div>
 
-            <div className="p-6 space-y-3.5">
+            <div className="p-5 space-y-3.5">
               <p className="text-xs text-[#172B4D] leading-relaxed">
-                Are you sure you want to permanently delete <strong className="text-red-700 font-bold">"{deleteConfirmProject.name}"</strong>?
+                Are you sure you want to permanently delete <strong className="text-red-700 font-semibold">"{deleteConfirmProject.name}"</strong>?
               </p>
-              <div className="p-3.5 bg-red-50/70 border border-red-100 rounded-xl text-xs text-red-900 space-y-1">
-                <div className="font-bold flex items-center gap-1.5 text-red-800">
+              <div className="p-3 bg-red-50 border border-red-200 rounded text-xs text-red-900 space-y-1">
+                <div className="font-semibold flex items-center gap-1.5 text-red-800">
                   <AlertCircle size={14} className="text-red-600 shrink-0" />
                   <span>Cascade Deletion Warning</span>
                 </div>
                 <p className="text-[11px] text-red-700 leading-normal">
-                  All associated epics, user stories, tasks, subtasks, and role assignments will be removed from PostgreSQL database immediately.
+                  All associated epics, user stories, tasks, subtasks, and role assignments will be removed from the database immediately.
                 </p>
               </div>
             </div>
 
-            <div className="px-6 py-4 bg-gray-50/80 border-t border-[#EBECF0] flex items-center justify-end gap-2">
+            <div className="px-5 py-3.5 bg-[#FAFBFC] border-t border-[#EBECF0] flex items-center justify-end gap-2">
               <button
                 type="button"
                 disabled={isDeletingProject}
                 onClick={() => setDeleteConfirmProject(null)}
-                className="px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-gray-200 rounded-lg transition-colors cursor-pointer"
+                className="px-3.5 py-1.5 text-xs font-medium text-[#42526E] hover:bg-[#EBECF0] rounded transition-colors cursor-pointer"
               >
                 Cancel
               </button>
@@ -1091,7 +1089,7 @@ export default function Board() {
                 type="button"
                 disabled={isDeletingProject}
                 onClick={() => handleDeleteBoardProject(deleteConfirmProject.id)}
-                className="px-5 py-2 text-xs font-bold text-white bg-red-600 hover:bg-red-700 rounded-lg shadow-xs transition-colors flex items-center gap-1.5 disabled:opacity-50 cursor-pointer"
+                className="px-4 py-1.5 text-xs font-medium text-white bg-red-600 hover:bg-red-700 rounded shadow-xs transition-colors flex items-center gap-1.5 disabled:opacity-50 cursor-pointer"
               >
                 {isDeletingProject ? (
                   <>
@@ -1100,7 +1098,7 @@ export default function Board() {
                   </>
                 ) : (
                   <>
-                    <Trash2 size={14} />
+                    <Trash2 size={13} />
                     <span>Delete Project Board</span>
                   </>
                 )}

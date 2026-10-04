@@ -21,7 +21,6 @@ import {
   ShieldAlert,
   Eye,
   EyeOff,
-  Sparkles,
   ExternalLink,
   Edit3,
   Save,
@@ -547,10 +546,10 @@ Login URL: ${window.location.origin}/login
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full flex items-center justify-center gap-1.5 py-2.5 px-4 rounded-lg font-bold text-xs text-white bg-[#0052CC] hover:bg-[#0747A6] shadow-xs transition-colors cursor-pointer disabled:opacity-50"
+                className="w-full flex items-center justify-center gap-1.5 py-2 px-3 rounded font-medium text-xs text-white bg-[#0052CC] hover:bg-[#0747A6] active:bg-[#00388B] transition-colors cursor-pointer disabled:opacity-50"
               >
                 <Plus size={14} />
-                <span>{isSubmitting ? 'Onboarding Engineer...' : 'Add Member & Generate Login'}</span>
+                <span>{isSubmitting ? 'Onboarding Member...' : 'Add Member & Generate Login'}</span>
               </button>
             </form>
           </div>
@@ -560,47 +559,47 @@ Login URL: ${window.location.origin}/login
             
             {/* Newly Created Credentials Card */}
             {createdCredentials && (
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-xl p-4 shadow-sm animate-in fade-in duration-200 relative">
+              <div className="bg-[#FAFBFC] border border-[#B3D4FF] rounded-lg p-4 shadow-xs relative">
                 <button
                   onClick={() => setCreatedCredentials(null)}
-                  className="absolute top-3 right-3 text-gray-400 hover:text-gray-600 text-xs p-1"
+                  className="absolute top-3 right-3 text-[#6B778C] hover:text-[#172B4D] text-xs p-1"
                 >
                   ✕
                 </button>
-                <div className="flex items-center gap-2 text-blue-700 font-bold text-sm mb-1">
-                  <Sparkles size={16} />
-                  <span>Teammate Onboarded — Login Credentials Ready</span>
+                <div className="flex items-center gap-2 text-[#0052CC] font-semibold text-sm mb-1">
+                  <KeyRound size={16} />
+                  <span>Member Onboarded — Login Credentials Ready</span>
                 </div>
                 <p className="text-xs text-[#5E6C84] mb-3">
-                  Share these credentials with your team member so they can immediately sign in at <span className="font-semibold text-[#0052CC]">/login</span>:
+                  Share these credentials with your team member so they can immediately sign in at <span className="font-medium text-[#0052CC]">/login</span>:
                 </p>
 
-                <div className="bg-white rounded-lg p-3 border border-blue-100 font-mono text-xs space-y-1.5 text-[#172B4D]">
-                  <div className="flex justify-between items-center py-0.5 border-b border-gray-50">
-                    <span className="text-gray-500 font-sans">Name:</span>
-                    <span className="font-bold">{createdCredentials.name}</span>
+                <div className="bg-white rounded border border-[#DFE1E6] font-mono text-xs p-3 space-y-1.5 text-[#172B4D]">
+                  <div className="flex justify-between items-center py-0.5 border-b border-[#EBECF0]">
+                    <span className="text-[#5E6C84] font-sans">Name:</span>
+                    <span className="font-semibold">{createdCredentials.name}</span>
                   </div>
-                  <div className="flex justify-between items-center py-0.5 border-b border-gray-50">
-                    <span className="text-gray-500 font-sans">Email:</span>
-                    <span className="font-bold text-blue-600">{createdCredentials.email}</span>
+                  <div className="flex justify-between items-center py-0.5 border-b border-[#EBECF0]">
+                    <span className="text-[#5E6C84] font-sans">Email:</span>
+                    <span className="font-semibold text-[#0052CC]">{createdCredentials.email}</span>
                   </div>
-                  <div className="flex justify-between items-center py-0.5 border-b border-gray-50">
-                    <span className="text-gray-500 font-sans">Password:</span>
-                    <span className="font-bold bg-amber-50 text-amber-900 px-1.5 py-0.5 rounded">{createdCredentials.password}</span>
+                  <div className="flex justify-between items-center py-0.5 border-b border-[#EBECF0]">
+                    <span className="text-[#5E6C84] font-sans">Password:</span>
+                    <span className="font-semibold bg-[#FFF0B3] text-[#172B4D] px-1.5 py-0.5 rounded">{createdCredentials.password}</span>
                   </div>
-                  <div className="flex justify-between items-center py-0.5 border-b border-gray-50">
-                    <span className="text-gray-500 font-sans">Role / Permission:</span>
-                    <span className="font-bold">{createdCredentials.role} ({createdCredentials.permission})</span>
+                  <div className="flex justify-between items-center py-0.5">
+                    <span className="text-[#5E6C84] font-sans">Role / Permission:</span>
+                    <span className="font-semibold">{createdCredentials.role} ({createdCredentials.permission})</span>
                   </div>
                 </div>
 
                 <div className="mt-3 flex gap-2">
                   <button
                     onClick={copyCredentialsText}
-                    className={`flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg text-xs font-bold transition-all ${
+                    className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 px-3 rounded text-xs font-medium transition-colors ${
                       copiedCreds
-                        ? 'bg-emerald-600 text-white'
-                        : 'bg-[#0052CC] hover:bg-[#0747A6] text-white shadow-xs'
+                        ? 'bg-[#006644] text-white'
+                        : 'bg-[#0052CC] hover:bg-[#0747A6] active:bg-[#00388B] text-white'
                     }`}
                   >
                     {copiedCreds ? <Check size={14} /> : <Copy size={14} />}
@@ -609,7 +608,7 @@ Login URL: ${window.location.origin}/login
                   <Link
                     to="/login"
                     target="_blank"
-                    className="flex items-center gap-1 px-3 py-2 bg-white border border-blue-200 text-[#0052CC] hover:bg-blue-50 text-xs font-bold rounded-lg transition-colors"
+                    className="flex items-center gap-1 px-3 py-1.5 bg-white border border-[#DFE1E6] text-[#172B4D] hover:bg-[#F4F5F7] text-xs font-medium rounded transition-colors"
                   >
                     <span>Test Login</span>
                     <ExternalLink size={12} />
@@ -877,24 +876,24 @@ Login URL: ${window.location.origin}/login
       {/* CUSTOM CONFIRM DELETE MODAL (Replaces browser confirm) */}
       {/* ========================================================= */}
       {deleteTargetMember && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 flex items-center justify-center p-4 animate-in fade-in duration-150">
-          <div className="bg-white rounded-xl shadow-2xl border border-[#DFE1E6] w-full max-w-md overflow-hidden animate-in zoom-in-95 duration-150">
-            <div className="p-6">
-              <div className="w-12 h-12 rounded-full bg-red-50 text-red-600 flex items-center justify-center mb-4">
-                <AlertTriangle size={24} />
+        <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-lg shadow-xl border border-[#DFE1E6] w-full max-w-md overflow-hidden animate-in fade-in duration-150">
+            <div className="p-5">
+              <div className="w-9 h-9 rounded bg-red-50 text-red-600 flex items-center justify-center mb-3">
+                <AlertTriangle size={18} />
               </div>
-              <h3 className="text-base font-bold text-[#172B4D]">Remove Squad Member?</h3>
+              <h3 className="text-sm font-semibold text-[#172B4D]">Remove Squad Member</h3>
               <p className="text-xs text-[#5E6C84] mt-2 leading-relaxed">
-                Are you sure you want to remove <strong className="text-[#172B4D]">{deleteTargetMember.name}</strong> ({deleteTargetMember.role}) from active sprint capacity? This will unassign any active sprint backlog tasks assigned to them.
+                Are you sure you want to remove <strong className="text-[#172B4D] font-medium">{deleteTargetMember.name}</strong> ({deleteTargetMember.role})? This will unassign any active sprint backlog tasks assigned to them.
               </p>
             </div>
 
-            <div className="px-6 py-3.5 bg-slate-50 border-t border-[#EBECF0] flex items-center justify-end gap-2">
+            <div className="px-5 py-3.5 bg-[#FAFBFC] border-t border-[#EBECF0] flex items-center justify-end gap-2">
               <button
                 type="button"
                 onClick={() => setDeleteTargetMember(null)}
                 disabled={isDeleting}
-                className="px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-gray-200 rounded-md transition-colors cursor-pointer"
+                className="px-3.5 py-1.5 text-xs font-medium text-[#42526E] hover:bg-[#EBECF0] rounded transition-colors cursor-pointer"
               >
                 Cancel
               </button>
@@ -902,14 +901,14 @@ Login URL: ${window.location.origin}/login
                 type="button"
                 onClick={confirmDeleteMember}
                 disabled={isDeleting}
-                className="px-4 py-2 text-xs font-bold text-white bg-red-600 hover:bg-red-700 rounded-md shadow-xs transition-colors cursor-pointer flex items-center gap-1.5 disabled:opacity-50"
+                className="px-3.5 py-1.5 text-xs font-medium text-white bg-red-600 hover:bg-red-700 rounded shadow-xs transition-colors cursor-pointer flex items-center gap-1.5 disabled:opacity-50"
               >
                 {isDeleting ? (
-                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                  <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
                 ) : (
                   <>
-                    <Trash2 size={14} />
-                    <span>Remove Engineer</span>
+                    <Trash2 size={13} />
+                    <span>Remove Member</span>
                   </>
                 )}
               </button>

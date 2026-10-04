@@ -21,7 +21,6 @@ import {
   BarChart3, 
   Compass, 
   Sliders, 
-  Sparkles,
   CheckCircle2,
   Bookmark,
   CheckSquare,
@@ -782,21 +781,21 @@ export default function Layout({ children }) {
 
             {/* Rich Fast Profile Dropdown Menu */}
             {userDropdownOpen && (
-              <div className="absolute right-0 mt-2 w-80 bg-white border border-[#DFE1E6] rounded-xl shadow-2xl py-2 z-50 animate-in fade-in zoom-in-95 duration-100 divide-y divide-gray-100">
+              <div className="absolute right-0 mt-1.5 w-80 bg-white border border-[#DFE1E6] rounded-md shadow-lg py-1.5 z-50 divide-y divide-[#EBECF0]">
                 
                 {/* User Info Header */}
-                <div className="px-4 py-3 bg-gradient-to-br from-slate-50 to-blue-50/40 rounded-t-xl">
+                <div className="px-4 py-3 bg-[#FAFBFC]">
                   <div className="flex items-center gap-3">
                     <div 
-                      className="w-11 h-11 rounded-xl flex items-center justify-center text-white text-sm font-bold shadow-sm"
+                      className="w-10 h-10 rounded flex items-center justify-center text-white text-sm font-bold shadow-xs"
                       style={{ backgroundColor: user?.avatarColor || '#0052CC' }}
                     >
                       {user?.initials || 'EX'}
                     </div>
                     <div className="min-w-0 flex-1">
-                      <div className="text-sm font-bold text-[#172B4D] truncate flex items-center gap-1.5">
+                      <div className="text-sm font-semibold text-[#172B4D] truncate flex items-center gap-1.5">
                         {user?.name || 'Engineer'}
-                        <span className="bg-[#DEEBFF] text-[#0052CC] font-bold px-1.5 py-0.5 rounded text-[10px]">
+                        <span className="bg-[#DEEBFF] text-[#0052CC] font-medium px-1.5 py-0.5 rounded text-[10px]">
                           {user?.role?.includes('FE') ? 'Frontend' : user?.role?.includes('BE') ? 'Backend' : 'Lead'}
                         </span>
                       </div>
@@ -805,11 +804,11 @@ export default function Layout({ children }) {
                   </div>
 
                   {/* Direct Company Workspace Card with Edit Option */}
-                  <div className="mt-3 p-2.5 bg-white border border-blue-100 rounded-lg shadow-2xs hover:border-blue-300 transition-colors">
+                  <div className="mt-3 p-2.5 bg-white border border-[#DFE1E6] rounded shadow-2xs hover:border-[#4C9AFF] transition-colors">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2 min-w-0">
                         <div 
-                          className="w-7 h-7 rounded-lg text-white flex items-center justify-center font-bold text-xs shadow-2xs shrink-0"
+                          className="w-7 h-7 rounded text-white flex items-center justify-center font-bold text-xs shrink-0"
                           style={{ backgroundColor: user?.avatarColor || '#0052CC' }}
                         >
                           <Building size={14} />
@@ -1313,14 +1312,14 @@ export default function Layout({ children }) {
       {/* 3. MODAL: CREATE ISSUE DIALOG */}
       {/* ========================================================= */}
       {createModalOpen && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-xl shadow-2xl border border-[#DFE1E6] w-full max-w-lg overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+        <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-lg shadow-xl border border-[#DFE1E6] w-full max-w-lg overflow-hidden animate-in fade-in duration-150">
             
             {/* Modal Header */}
-            <div className="px-6 py-4 border-b border-[#EBECF0] flex items-center justify-between bg-[#FAFBFC]">
+            <div className="px-6 py-4 border-b border-[#EBECF0] flex items-center justify-between bg-white">
               <div>
-                <h3 className="font-bold text-base text-[#172B4D]">Create Issue</h3>
-                <p className="text-xs text-[#5E6C84]">Project: <span className="font-semibold text-[#0052CC]">SprintX Core (SPX)</span></p>
+                <h3 className="font-semibold text-base text-[#172B4D]">Create Issue</h3>
+                <p className="text-xs text-[#5E6C84]">Project: <span className="font-medium text-[#0052CC]">SprintX Core (SPX)</span></p>
               </div>
               <button 
                 onClick={() => setCreateModalOpen(false)}
@@ -1440,22 +1439,22 @@ export default function Layout({ children }) {
       {/* 4. MODAL: HELP & KEYBOARD SHORTCUTS */}
       {/* ========================================================= */}
       {helpModalOpen && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-xl shadow-2xl border border-[#DFE1E6] w-full max-w-lg overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+        <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-lg shadow-xl border border-[#DFE1E6] w-full max-w-lg overflow-hidden animate-in fade-in duration-150">
             {/* Modal Header */}
-            <div className="px-6 py-4 border-b border-[#EBECF0] flex items-center justify-between bg-[#FAFBFC]">
+            <div className="px-6 py-4 border-b border-[#EBECF0] flex items-center justify-between bg-white">
               <div className="flex items-center gap-2">
-                <div className="w-7 h-7 rounded-lg bg-blue-50 text-[#0052CC] flex items-center justify-center font-bold">
+                <div className="w-7 h-7 rounded bg-[#DEEBFF] text-[#0052CC] flex items-center justify-center font-bold">
                   <HelpCircle size={16} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-sm text-[#172B4D]">Help & Shortcuts</h3>
+                  <h3 className="font-semibold text-sm text-[#172B4D]">Help & Shortcuts</h3>
                   <p className="text-[11px] text-[#5E6C84]">SprintX Agile Workspace Guide</p>
                 </div>
               </div>
               <button 
                 onClick={() => setHelpModalOpen(false)}
-                className="p-1 rounded text-gray-400 hover:text-gray-700 hover:bg-gray-100 cursor-pointer"
+                className="p-1 rounded text-[#6B778C] hover:text-[#172B4D] hover:bg-[#F4F5F7] cursor-pointer"
               >
                 <CloseIcon size={18} />
               </button>
@@ -1464,37 +1463,37 @@ export default function Layout({ children }) {
             {/* Modal Content */}
             <div className="p-6 space-y-5 max-h-[75vh] overflow-y-auto">
               <div>
-                <h4 className="text-xs font-bold text-[#5E6C84] uppercase tracking-wider mb-2.5">Global Keyboard Shortcuts</h4>
+                <h4 className="text-xs font-semibold text-[#5E6C84] uppercase tracking-wider mb-2.5">Global Keyboard Shortcuts</h4>
                 <div className="grid grid-cols-2 gap-2 text-xs">
-                  <div className="flex items-center justify-between p-2 rounded-lg bg-slate-50 border border-slate-200">
+                  <div className="flex items-center justify-between p-2 rounded bg-[#FAFBFC] border border-[#DFE1E6]">
                     <span className="text-[#172B4D] font-medium">Search tickets</span>
-                    <kbd className="px-2 py-0.5 bg-white border border-slate-300 rounded text-[11px] font-mono shadow-xs">/</kbd>
+                    <kbd className="px-2 py-0.5 bg-white border border-[#DFE1E6] rounded text-[11px] font-mono shadow-xs">/</kbd>
                   </div>
-                  <div className="flex items-center justify-between p-2 rounded-lg bg-slate-50 border border-slate-200">
+                  <div className="flex items-center justify-between p-2 rounded bg-[#FAFBFC] border border-[#DFE1E6]">
                     <span className="text-[#172B4D] font-medium">Create issue</span>
-                    <kbd className="px-2 py-0.5 bg-white border border-slate-300 rounded text-[11px] font-mono shadow-xs">C</kbd>
+                    <kbd className="px-2 py-0.5 bg-white border border-[#DFE1E6] rounded text-[11px] font-mono shadow-xs">C</kbd>
                   </div>
-                  <div className="flex items-center justify-between p-2 rounded-lg bg-slate-50 border border-slate-200">
+                  <div className="flex items-center justify-between p-2 rounded bg-[#FAFBFC] border border-[#DFE1E6]">
                     <span className="text-[#172B4D] font-medium">Active Sprints</span>
-                    <kbd className="px-2 py-0.5 bg-white border border-slate-300 rounded text-[11px] font-mono shadow-xs">B</kbd>
+                    <kbd className="px-2 py-0.5 bg-white border border-[#DFE1E6] rounded text-[11px] font-mono shadow-xs">B</kbd>
                   </div>
-                  <div className="flex items-center justify-between p-2 rounded-lg bg-slate-50 border border-slate-200">
+                  <div className="flex items-center justify-between p-2 rounded bg-[#FAFBFC] border border-[#DFE1E6]">
                     <span className="text-[#172B4D] font-medium">Team Allocator</span>
-                    <kbd className="px-2 py-0.5 bg-white border border-slate-300 rounded text-[11px] font-mono shadow-xs">T</kbd>
+                    <kbd className="px-2 py-0.5 bg-white border border-[#DFE1E6] rounded text-[11px] font-mono shadow-xs">T</kbd>
                   </div>
-                  <div className="flex items-center justify-between p-2 rounded-lg bg-slate-50 border border-slate-200">
-                    <span className="text-[#172B4D] font-medium">SRS AI Ingest</span>
-                    <kbd className="px-2 py-0.5 bg-white border border-slate-300 rounded text-[11px] font-mono shadow-xs">U</kbd>
+                  <div className="flex items-center justify-between p-2 rounded bg-[#FAFBFC] border border-[#DFE1E6]">
+                    <span className="text-[#172B4D] font-medium">Import Requirements</span>
+                    <kbd className="px-2 py-0.5 bg-white border border-[#DFE1E6] rounded text-[11px] font-mono shadow-xs">U</kbd>
                   </div>
-                  <div className="flex items-center justify-between p-2 rounded-lg bg-slate-50 border border-slate-200">
+                  <div className="flex items-center justify-between p-2 rounded bg-[#FAFBFC] border border-[#DFE1E6]">
                     <span className="text-[#172B4D] font-medium">Close modals</span>
-                    <kbd className="px-2 py-0.5 bg-white border border-slate-300 rounded text-[11px] font-mono shadow-xs">ESC</kbd>
+                    <kbd className="px-2 py-0.5 bg-white border border-[#DFE1E6] rounded text-[11px] font-mono shadow-xs">ESC</kbd>
                   </div>
                 </div>
               </div>
 
-              <div className="pt-2 border-t border-gray-100">
-                <h4 className="text-xs font-bold text-[#5E6C84] uppercase tracking-wider mb-2">Agile & Sprint Guidelines</h4>
+              <div className="pt-2 border-t border-[#EBECF0]">
+                <h4 className="text-xs font-semibold text-[#5E6C84] uppercase tracking-wider mb-2">Agile & Sprint Guidelines</h4>
                 <div className="space-y-2 text-xs text-[#42526E]">
                   <p className="flex items-start gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#0052CC] mt-1.5 flex-shrink-0" />
@@ -1506,17 +1505,17 @@ export default function Layout({ children }) {
                   </p>
                   <p className="flex items-start gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-purple-500 mt-1.5 flex-shrink-0" />
-                    <span><strong>Automated Ingestion:</strong> Use AI Ingest on the Upload tab to transform raw documents directly into epics and stories.</span>
+                    <span><strong>Specification Import:</strong> Use Import on the navigation bar to parse specifications into epics, stories, and tasks.</span>
                   </p>
                 </div>
               </div>
             </div>
 
             {/* Modal Footer */}
-            <div className="px-6 py-3 bg-slate-50 border-t border-[#EBECF0] flex justify-end">
+            <div className="px-6 py-3 bg-[#FAFBFC] border-t border-[#EBECF0] flex justify-end">
               <button
                 onClick={() => setHelpModalOpen(false)}
-                className="px-4 py-1.5 text-xs font-bold text-white bg-[#0052CC] hover:bg-[#0747A6] rounded-md transition-colors cursor-pointer"
+                className="px-3.5 py-1.5 text-xs font-medium text-white bg-[#0052CC] hover:bg-[#0747A6] rounded transition-colors cursor-pointer"
               >
                 Got it
               </button>
@@ -1529,20 +1528,20 @@ export default function Layout({ children }) {
       {/* 5. MODAL: COMPANY & WORKSPACE PROFILE (ENTERPRISE SETTINGS) */}
       {/* ========================================================= */}
       {companyModalOpen && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl shadow-2xl border border-[#DFE1E6] w-full max-w-xl overflow-hidden animate-in fade-in zoom-in-95 duration-150 flex flex-col max-h-[85vh]">
+        <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-lg shadow-xl border border-[#DFE1E6] w-full max-w-xl overflow-hidden animate-in fade-in duration-150 flex flex-col max-h-[85vh]">
             
             {/* Modal Header */}
-            <div className="px-6 py-4 border-b border-[#EBECF0] flex items-center justify-between bg-gradient-to-r from-slate-50 via-blue-50/30 to-indigo-50/20 flex-shrink-0">
+            <div className="px-6 py-4 border-b border-[#EBECF0] flex items-center justify-between bg-white flex-shrink-0">
               <div className="flex items-center gap-3">
                 <div 
-                  className="w-10 h-10 rounded-xl text-white flex items-center justify-center font-bold shadow-xs flex-shrink-0"
+                  className="w-9 h-9 rounded text-white flex items-center justify-center font-bold shadow-xs flex-shrink-0"
                   style={{ backgroundColor: companyForm.avatarColor || '#0052CC' }}
                 >
-                  <Building2 size={20} />
+                  <Building2 size={18} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-sm text-[#172B4D]">Company & Workspace Settings</h3>
+                  <h3 className="font-semibold text-sm text-[#172B4D]">Company & Workspace Settings</h3>
                   <p className="text-[11px] text-[#5E6C84]">Manage organization metadata, agile standards, and tenant security</p>
                 </div>
               </div>
@@ -1894,61 +1893,61 @@ export default function Layout({ children }) {
       {/* 6. MODAL: CREATE NEW PROJECT BOARD */}
       {/* ========================================================= */}
       {createProjectModalOpen && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl shadow-2xl border border-[#DFE1E6] w-full max-w-md overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+        <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-lg shadow-xl border border-[#DFE1E6] w-full max-w-md overflow-hidden animate-in fade-in duration-150">
             {/* Modal Header */}
-            <div className="px-6 py-4 border-b border-[#EBECF0] flex items-center justify-between bg-gradient-to-r from-blue-50/60 to-indigo-50/40">
+            <div className="px-5 py-4 border-b border-[#EBECF0] flex items-center justify-between bg-white">
               <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-xl bg-[#0052CC] text-white flex items-center justify-center font-bold shadow-xs">
-                  <FolderPlus size={18} />
+                <div className="w-8 h-8 rounded bg-[#DEEBFF] text-[#0052CC] flex items-center justify-center font-bold">
+                  <FolderPlus size={16} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-sm text-[#172B4D]">Create Project Board</h3>
+                  <h3 className="font-semibold text-sm text-[#172B4D]">Create Project Board</h3>
                   <p className="text-[11px] text-[#5E6C84]">Spin up a new sprint board for your company</p>
                 </div>
               </div>
               <button 
                 onClick={() => setCreateProjectModalOpen(false)}
-                className="p-1 rounded text-gray-400 hover:text-gray-700 hover:bg-gray-100 cursor-pointer transition-colors"
+                className="p-1 rounded text-[#6B778C] hover:text-[#172B4D] hover:bg-[#F4F5F7] cursor-pointer transition-colors"
               >
                 <CloseIcon size={18} />
               </button>
             </div>
 
             {/* Modal Form */}
-            <form onSubmit={handleCreateNewProject} className="p-6 space-y-4">
+            <form onSubmit={handleCreateNewProject} className="p-5 space-y-4">
               <div>
-                <label className="block text-xs font-bold text-[#5E6C84] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-semibold text-[#5E6C84] uppercase tracking-wider mb-1.5">
                   Project Board Title <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder="e.g. Mobile App Redesign (iOS/Android)"
+                  placeholder="e.g. Mobile App Redesign"
                   value={newProjectForm.name}
                   onChange={e => setNewProjectForm({ ...newProjectForm, name: e.target.value })}
-                  className="w-full py-2 px-3 text-xs border border-[#DFE1E6] rounded-lg bg-[#FAFBFC] focus:bg-white focus:ring-2 focus:ring-[#0052CC] text-[#172B4D] font-medium"
+                  className="w-full py-2 px-3 text-xs border border-[#DFE1E6] rounded bg-white focus:outline-none focus:border-[#0052CC] focus:ring-1 focus:ring-[#0052CC] text-[#172B4D] font-medium"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#5E6C84] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-semibold text-[#5E6C84] uppercase tracking-wider mb-1.5">
                   Target Sprint Deadline (Optional)
                 </label>
                 <input
                   type="date"
                   value={newProjectForm.deadline}
                   onChange={e => setNewProjectForm({ ...newProjectForm, deadline: e.target.value })}
-                  className="w-full py-2 px-3 text-xs border border-[#DFE1E6] rounded-lg bg-[#FAFBFC] focus:bg-white focus:ring-2 focus:ring-[#0052CC] text-[#172B4D]"
+                  className="w-full py-2 px-3 text-xs border border-[#DFE1E6] rounded bg-white focus:outline-none focus:border-[#0052CC] focus:ring-1 focus:ring-[#0052CC] text-[#172B4D]"
                 />
               </div>
 
-              <div className="p-3 bg-blue-50/60 border border-blue-100 rounded-xl text-xs text-blue-900 space-y-1">
-                <div className="font-bold flex items-center gap-1.5">
-                  <Sparkles size={13} className="text-blue-600" />
-                  <span>Instant Setup Included</span>
+              <div className="p-3 bg-[#FAFBFC] border border-[#DFE1E6] rounded text-xs text-[#42526E] space-y-1">
+                <div className="font-semibold flex items-center gap-1.5 text-[#172B4D]">
+                  <FolderKanban size={13} className="text-[#0052CC]" />
+                  <span>Sprint Backlog Ready</span>
                 </div>
-                <p className="text-[11px] text-blue-700">
+                <p className="text-[11px] text-[#5E6C84]">
                   Creates an initial backlog and allows your team members to start assigning and managing tasks immediately.
                 </p>
               </div>
@@ -1958,14 +1957,14 @@ export default function Layout({ children }) {
                 <button
                   type="button"
                   onClick={() => setCreateProjectModalOpen(false)}
-                  className="px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-gray-100 rounded-lg transition-colors cursor-pointer"
+                  className="px-3.5 py-1.5 text-xs font-medium text-[#42526E] hover:bg-[#EBECF0] rounded transition-colors cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={isCreatingProject || !newProjectForm.name.trim()}
-                  className="px-5 py-2 text-xs font-bold text-white bg-[#0052CC] hover:bg-[#0747A6] rounded-lg shadow-xs transition-colors flex items-center gap-1.5 disabled:opacity-50 cursor-pointer"
+                  className="px-4 py-1.5 text-xs font-medium text-white bg-[#0052CC] hover:bg-[#0747A6] active:bg-[#00388B] rounded shadow-xs transition-colors flex items-center gap-1.5 disabled:opacity-50 cursor-pointer"
                 >
                   {isCreatingProject ? (
                     <>
@@ -1989,47 +1988,47 @@ export default function Layout({ children }) {
       {/* 7. MODAL: DELETE PROJECT CONFIRMATION */}
       {/* ========================================================= */}
       {deleteConfirmProject && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl shadow-2xl border border-red-200 w-full max-w-md overflow-hidden animate-in fade-in zoom-in-95 duration-150">
-            <div className="px-6 py-4 border-b border-red-100 flex items-center justify-between bg-red-50/60">
+        <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-lg shadow-xl border border-[#DFE1E6] w-full max-w-md overflow-hidden animate-in fade-in duration-150">
+            <div className="px-5 py-4 border-b border-[#EBECF0] flex items-center justify-between bg-white">
               <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-xl bg-red-600 text-white flex items-center justify-center font-bold shadow-xs">
-                  <Trash2 size={18} />
+                <div className="w-8 h-8 rounded bg-red-50 text-red-600 flex items-center justify-center font-bold">
+                  <Trash2 size={16} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-sm text-red-950">Delete Project Board</h3>
-                  <p className="text-[11px] text-red-600">Permanently delete board & all sprint tasks</p>
+                  <h3 className="font-semibold text-sm text-[#172B4D]">Delete Project Board</h3>
+                  <p className="text-[11px] text-[#5E6C84]">Permanently delete board & all sprint tasks</p>
                 </div>
               </div>
               <button 
                 onClick={() => setDeleteConfirmProject(null)}
-                className="p-1 rounded text-gray-400 hover:text-gray-700 hover:bg-gray-100 cursor-pointer transition-colors"
+                className="p-1 rounded text-[#6B778C] hover:text-[#172B4D] hover:bg-[#F4F5F7] cursor-pointer transition-colors"
               >
                 <CloseIcon size={18} />
               </button>
             </div>
 
-            <div className="p-6 space-y-3.5">
+            <div className="p-5 space-y-3.5">
               <p className="text-xs text-[#172B4D] leading-relaxed">
-                Are you sure you want to permanently delete <strong className="text-red-700 font-bold">"{deleteConfirmProject.name}"</strong>?
+                Are you sure you want to permanently delete <strong className="text-red-700 font-semibold">"{deleteConfirmProject.name}"</strong>?
               </p>
-              <div className="p-3.5 bg-red-50/70 border border-red-100 rounded-xl text-xs text-red-900 space-y-1">
-                <div className="font-bold flex items-center gap-1.5 text-red-800">
+              <div className="p-3 bg-red-50 border border-red-200 rounded text-xs text-red-900 space-y-1">
+                <div className="font-semibold flex items-center gap-1.5 text-red-800">
                   <AlertCircle size={14} className="text-red-600 shrink-0" />
                   <span>Cascade Deletion Warning</span>
                 </div>
                 <p className="text-[11px] text-red-700 leading-normal">
-                  All associated epics, user stories, tasks, subtasks, and role assignments will be removed from PostgreSQL database immediately.
+                  All associated epics, user stories, tasks, subtasks, and role assignments will be removed from the database immediately.
                 </p>
               </div>
             </div>
 
-            <div className="px-6 py-4 bg-gray-50/80 border-t border-[#EBECF0] flex items-center justify-end gap-2">
+            <div className="px-5 py-3.5 bg-[#FAFBFC] border-t border-[#EBECF0] flex items-center justify-end gap-2">
               <button
                 type="button"
                 disabled={isDeletingProject}
                 onClick={() => setDeleteConfirmProject(null)}
-                className="px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-gray-200 rounded-lg transition-colors cursor-pointer"
+                className="px-3.5 py-1.5 text-xs font-medium text-[#42526E] hover:bg-[#EBECF0] rounded transition-colors cursor-pointer"
               >
                 Cancel
               </button>
@@ -2037,7 +2036,7 @@ export default function Layout({ children }) {
                 type="button"
                 disabled={isDeletingProject}
                 onClick={() => handleDeleteProject(deleteConfirmProject.id)}
-                className="px-5 py-2 text-xs font-bold text-white bg-red-600 hover:bg-red-700 rounded-lg shadow-xs transition-colors flex items-center gap-1.5 disabled:opacity-50 cursor-pointer"
+                className="px-4 py-1.5 text-xs font-medium text-white bg-red-600 hover:bg-red-700 rounded shadow-xs transition-colors flex items-center gap-1.5 disabled:opacity-50 cursor-pointer"
               >
                 {isDeletingProject ? (
                   <>
@@ -2046,7 +2045,7 @@ export default function Layout({ children }) {
                   </>
                 ) : (
                   <>
-                    <Trash2 size={14} />
+                    <Trash2 size={13} />
                     <span>Delete Project Board</span>
                   </>
                 )}

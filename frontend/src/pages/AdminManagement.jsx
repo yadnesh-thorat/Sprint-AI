@@ -81,12 +81,12 @@ export default function AdminManagement() {
   const navigate = useNavigate();
   const location = useLocation();
   const queryTab = new URLSearchParams(location.search).get('tab');
-  
+
   // Tab state: overview, api_keys, tenants, rls_security
   const [activeTab, setActiveTab] = useState(
     queryTab === 'api_keys' ? 'api_keys' :
-    queryTab === 'tenants' ? 'tenants' :
-    queryTab === 'rls_security' ? 'rls_security' : 'overview'
+      queryTab === 'tenants' ? 'tenants' :
+        queryTab === 'rls_security' ? 'rls_security' : 'overview'
   );
 
   useEffect(() => {
@@ -417,11 +417,11 @@ The system must parse incoming multipart PDF documents, extract architectural sc
 
   // Filtered workspaces
   const filteredWorkspaces = (metrics.workspaces || []).filter(w => {
-    const matchesSearch = 
+    const matchesSearch =
       w.organization?.toLowerCase().includes(searchWorkspaceQuery.toLowerCase()) ||
       w.name?.toLowerCase().includes(searchWorkspaceQuery.toLowerCase()) ||
       w.email?.toLowerCase().includes(searchWorkspaceQuery.toLowerCase());
-    
+
     if (workspaceFilter === 'ADMINS') return matchesSearch && w.is_super_admin;
     if (workspaceFilter === 'SQUADS') return matchesSearch && !w.is_super_admin;
     return matchesSearch;
@@ -460,13 +460,13 @@ The system must parse incoming multipart PDF documents, extract architectural sc
 
   return (
     <div className="flex-1 flex flex-col h-full overflow-y-auto bg-slate-50 text-[#172B4D] min-h-screen selection:bg-indigo-100 selection:text-indigo-900">
-      
+
       {/* ========================================================= */}
       {/* 1. ENTERPRISE COMMAND CENTER HEADER (CLEAN LIGHT) */}
       {/* ========================================================= */}
       <div className="bg-white border-b border-[#DFE1E6] px-6 py-5 flex-shrink-0 shadow-xs relative overflow-hidden">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-center justify-between gap-5 relative z-10">
-          
+
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-2xl bg-indigo-600 flex items-center justify-center text-white shadow-md shadow-indigo-600/20 shrink-0">
               <ShieldCheck size={26} />
@@ -505,16 +505,16 @@ The system must parse incoming multipart PDF documents, extract architectural sc
             <button
               type="button"
               onClick={() => setShowAddKeyModal(true)}
-              className="px-3.5 py-2 bg-[#0052CC] hover:bg-[#0747A6] text-white rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 cursor-pointer active:scale-95"
+              className="px-3 py-1.5 bg-[#0052CC] hover:bg-[#0747A6] active:bg-[#00388B] text-white rounded text-xs font-medium transition-colors shadow-xs flex items-center gap-1.5 cursor-pointer"
             >
               <Plus size={14} />
-              <span>Add AI Key</span>
+              <span>Add Key</span>
             </button>
 
             <button
               type="button"
               onClick={handleExportTelemetry}
-              className="px-3.5 py-2 bg-white hover:bg-slate-50 text-[#172B4D] border border-[#DFE1E6] rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer shadow-xs"
+              className="px-3 py-1.5 bg-white hover:bg-[#F4F5F7] text-[#172B4D] border border-[#DFE1E6] rounded text-xs font-medium transition-colors flex items-center gap-1.5 cursor-pointer"
               title="Export Full Platform Metrics as JSON"
             >
               <Download size={14} className="text-[#0052CC]" />
@@ -525,9 +525,9 @@ The system must parse incoming multipart PDF documents, extract architectural sc
               type="button"
               onClick={fetchDatabaseMetrics}
               disabled={refreshing}
-              className="px-3.5 py-2 bg-white hover:bg-slate-50 text-[#172B4D] border border-[#DFE1E6] rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer shadow-xs disabled:opacity-50"
+              className="px-3 py-1.5 bg-white hover:bg-[#F4F5F7] text-[#172B4D] border border-[#DFE1E6] rounded text-xs font-medium transition-colors flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
             >
-              <RefreshCw size={14} className={refreshing ? 'animate-spin text-[#0052CC]' : 'text-slate-500'} />
+              <RefreshCw size={13} className={refreshing ? 'animate-spin text-[#0052CC]' : 'text-[#5E6C84]'} />
               <span>{refreshing ? 'Syncing...' : 'Sync DB'}</span>
             </button>
           </div>
@@ -537,15 +537,15 @@ The system must parse incoming multipart PDF documents, extract architectural sc
 
       {/* FEEDBACK TOAST */}
       {actionSuccess && (
-        <div className="bg-emerald-50 border-b border-emerald-200 px-6 py-2.5 text-xs text-emerald-800 font-bold flex items-center justify-between animate-in fade-in">
+        <div className="bg-emerald-50 border-b border-emerald-200 px-6 py-2 text-xs text-emerald-800 font-medium flex items-center justify-between animate-in fade-in">
           <div className="flex items-center gap-2">
-            <CheckCircle2 size={16} className="text-emerald-600 shrink-0" />
+            <CheckCircle2 size={15} className="text-emerald-600 shrink-0" />
             <span>{actionSuccess}</span>
           </div>
-          <button 
-            type="button" 
+          <button
+            type="button"
             onClick={() => setActionSuccess(null)}
-            className="text-emerald-700 hover:text-emerald-900 text-[11px] cursor-pointer font-bold"
+            className="text-emerald-700 hover:text-emerald-900 text-[11px] cursor-pointer font-medium"
           >
             Dismiss
           </button>
@@ -555,13 +555,13 @@ The system must parse incoming multipart PDF documents, extract architectural sc
       {/* ========================================================= */}
       {/* 2. SEGMENTED CONTROL / NAVIGATION BAR */}
       {/* ========================================================= */}
-      <div className="bg-white border-b border-[#DFE1E6] px-6 sticky top-0 z-20 shadow-2xs">
-        <div className="max-w-7xl mx-auto flex items-center gap-2 overflow-x-auto py-2.5">
+      <div className="bg-white border-b border-[#DFE1E6] px-6 sticky top-0 z-20">
+        <div className="max-w-7xl mx-auto flex items-center gap-1 overflow-x-auto py-2">
           {[
-            { id: 'overview', label: 'Overview & Telemetry', icon: <BarChart3 size={15} />, badge: `${metrics.todayVisits} Today` },
-            { id: 'api_keys', label: 'Multi-Key AI Gateway', icon: <Cpu size={15} />, badge: `${metrics.apiKeys.length} Keys` },
-            { id: 'tenants', label: 'Tenants & Workspaces', icon: <Building2 size={15} />, badge: `${metrics.totalUsers} Orgs` },
-            { id: 'rls_security', label: 'Database & RLS Audit', icon: <Database size={15} />, badge: '8 Tables' },
+            { id: 'overview', label: 'Overview & Telemetry', icon: <BarChart3 size={14} />, badge: `${metrics.todayVisits} Today` },
+            { id: 'api_keys', label: 'Multi-Key AI Gateway', icon: <Cpu size={14} />, badge: `${metrics.apiKeys.length} Keys` },
+            { id: 'tenants', label: 'Tenants & Workspaces', icon: <Building2 size={14} />, badge: `${metrics.totalUsers} Orgs` },
+            { id: 'rls_security', label: 'Database & RLS Audit', icon: <Database size={14} />, badge: '8 Tables' },
           ].map(tab => {
             const isActive = activeTab === tab.id;
             return (
@@ -571,17 +571,15 @@ The system must parse incoming multipart PDF documents, extract architectural sc
                   setActiveTab(tab.id);
                   navigate(`/admin?tab=${tab.id}`, { replace: true });
                 }}
-                className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
-                  isActive
-                    ? 'bg-[#E6EFFC] text-[#0052CC] font-bold border border-blue-200 shadow-xs'
-                    : 'text-[#5E6C84] hover:text-[#172B4D] hover:bg-slate-50'
-                }`}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-medium transition-colors cursor-pointer whitespace-nowrap ${isActive
+                    ? 'bg-[#DEEBFF] text-[#0052CC] font-semibold'
+                    : 'text-[#5E6C84] hover:text-[#172B4D] hover:bg-[#F4F5F7]'
+                  }`}
               >
                 {tab.icon}
                 <span>{tab.label}</span>
-                <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-black ${
-                  isActive ? 'bg-[#0052CC] text-white' : 'bg-slate-100 text-slate-600 border border-slate-200'
-                }`}>
+                <span className={`text-[10px] px-1.5 py-0.2 rounded font-medium ${isActive ? 'bg-[#0052CC] text-white' : 'bg-[#EBECF0] text-[#5E6C84]'
+                  }`}>
                   {tab.badge}
                 </span>
               </button>
@@ -594,29 +592,28 @@ The system must parse incoming multipart PDF documents, extract architectural sc
       {/* 3. MAIN DASHBOARD CONTENT */}
       {/* ========================================================= */}
       <div className="max-w-7xl mx-auto w-full p-6 space-y-6 flex-1">
-        
+
         {/* ========================================================= */}
         {/* TAB 1: OVERVIEW & REAL-TIME PLATFORM TELEMETRY */}
         {/* ========================================================= */}
         {activeTab === 'overview' && (
           <div className="space-y-6 animate-in fade-in duration-200">
-            
-            {/* 4 HIGH-END HERO STAT CARDS */}
+
+            {/* 4 HERO STAT CARDS */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              
+
               {/* Card 1: Visitors */}
-              <div className="bg-white border border-[#DFE1E6] hover:border-blue-300 rounded-2xl p-5 shadow-xs transition-all relative overflow-hidden group">
-                <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-blue-500 to-cyan-400" />
-                <div className="flex items-center justify-between text-[#5E6C84] mb-3">
-                  <span className="text-[11px] font-bold uppercase tracking-wider">Platform Traffic</span>
-                  <div className="w-8 h-8 rounded-xl bg-blue-50 border border-blue-100 text-[#0052CC] flex items-center justify-center">
-                    <Globe size={16} />
+              <div className="bg-white border border-[#DFE1E6] rounded-lg p-4 shadow-xs">
+                <div className="flex items-center justify-between text-[#5E6C84] mb-2.5">
+                  <span className="text-[11px] font-semibold uppercase tracking-wider">Platform Traffic</span>
+                  <div className="w-7 h-7 rounded bg-[#FAFBFC] border border-[#EBECF0] text-[#0052CC] flex items-center justify-center">
+                    <Globe size={14} />
                   </div>
                 </div>
-                <div className="text-3xl font-black text-[#172B4D] tracking-tight">{metrics.todayVisits}</div>
-                <div className="flex items-center justify-between text-[11px] mt-2 pt-2 border-t border-slate-100">
-                  <span className="text-[#5E6C84]">7-Day Hits: <strong className="text-[#172B4D]">{metrics.weeklyVisits}</strong></span>
-                  <span className="text-emerald-600 font-bold flex items-center gap-1">
+                <div className="text-2xl font-bold text-[#172B4D] tracking-tight">{metrics.todayVisits}</div>
+                <div className="flex items-center justify-between text-[11px] mt-2 pt-2 border-t border-[#EBECF0]">
+                  <span className="text-[#5E6C84]">7-Day Hits: <strong className="text-[#172B4D] font-medium">{metrics.weeklyVisits}</strong></span>
+                  <span className="text-[#006644] font-medium flex items-center gap-1">
                     <Activity size={12} />
                     Live DB
                   </span>
@@ -624,34 +621,32 @@ The system must parse incoming multipart PDF documents, extract architectural sc
               </div>
 
               {/* Card 2: Workspaces */}
-              <div className="bg-white border border-[#DFE1E6] hover:border-purple-300 rounded-2xl p-5 shadow-xs transition-all relative overflow-hidden group">
-                <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-purple-500 to-indigo-500" />
-                <div className="flex items-center justify-between text-[#5E6C84] mb-3">
-                  <span className="text-[11px] font-bold uppercase tracking-wider">Registered Tenants</span>
-                  <div className="w-8 h-8 rounded-xl bg-purple-50 border border-purple-100 text-purple-600 flex items-center justify-center">
-                    <Building2 size={16} />
+              <div className="bg-white border border-[#DFE1E6] rounded-lg p-4 shadow-xs">
+                <div className="flex items-center justify-between text-[#5E6C84] mb-2.5">
+                  <span className="text-[11px] font-semibold uppercase tracking-wider">Registered Tenants</span>
+                  <div className="w-7 h-7 rounded bg-[#FAFBFC] border border-[#EBECF0] text-[#0052CC] flex items-center justify-center">
+                    <Building2 size={14} />
                   </div>
                 </div>
-                <div className="text-3xl font-black text-[#172B4D] tracking-tight">{metrics.totalUsers}</div>
-                <div className="flex items-center justify-between text-[11px] mt-2 pt-2 border-t border-slate-100">
+                <div className="text-2xl font-bold text-[#172B4D] tracking-tight">{metrics.totalUsers}</div>
+                <div className="flex items-center justify-between text-[11px] mt-2 pt-2 border-t border-[#EBECF0]">
                   <span className="text-[#5E6C84]">Total Squad Members:</span>
-                  <span className="text-purple-700 font-bold">{metrics.totalTeamMembers} Engineers</span>
+                  <span className="text-[#172B4D] font-medium">{metrics.totalTeamMembers} Engineers</span>
                 </div>
               </div>
 
               {/* Card 3: AI Key Gateway Pool */}
-              <div className="bg-white border border-[#DFE1E6] hover:border-emerald-300 rounded-2xl p-5 shadow-xs transition-all relative overflow-hidden group">
-                <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-emerald-500 to-teal-400" />
-                <div className="flex items-center justify-between text-[#5E6C84] mb-3">
-                  <span className="text-[11px] font-bold uppercase tracking-wider">AI Key Gateway</span>
-                  <div className="w-8 h-8 rounded-xl bg-emerald-50 border border-emerald-100 text-emerald-600 flex items-center justify-center">
-                    <Cpu size={16} />
+              <div className="bg-white border border-[#DFE1E6] rounded-lg p-4 shadow-xs">
+                <div className="flex items-center justify-between text-[#5E6C84] mb-2.5">
+                  <span className="text-[11px] font-semibold uppercase tracking-wider">AI Key Gateway</span>
+                  <div className="w-7 h-7 rounded bg-[#FAFBFC] border border-[#EBECF0] text-[#0052CC] flex items-center justify-center">
+                    <Cpu size={14} />
                   </div>
                 </div>
-                <div className="text-3xl font-black text-[#172B4D] tracking-tight">{metrics.apiKeys.length}</div>
-                <div className="flex items-center justify-between text-[11px] mt-2 pt-2 border-t border-slate-100">
+                <div className="text-2xl font-bold text-[#172B4D] tracking-tight">{metrics.apiKeys.length}</div>
+                <div className="flex items-center justify-between text-[11px] mt-2 pt-2 border-t border-[#EBECF0]">
                   <span className="text-[#5E6C84]">Failover Gateway:</span>
-                  <span className="text-emerald-600 font-bold flex items-center gap-1">
+                  <span className="text-[#006644] font-medium flex items-center gap-1">
                     <CheckCircle2 size={12} />
                     Active
                   </span>
@@ -659,18 +654,17 @@ The system must parse incoming multipart PDF documents, extract architectural sc
               </div>
 
               {/* Card 4: Work Items Decomposed */}
-              <div className="bg-white border border-[#DFE1E6] hover:border-amber-300 rounded-2xl p-5 shadow-xs transition-all relative overflow-hidden group">
-                <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-amber-500 to-rose-500" />
-                <div className="flex items-center justify-between text-[#5E6C84] mb-3">
-                  <span className="text-[11px] font-bold uppercase tracking-wider">Decomposed Artifacts</span>
-                  <div className="w-8 h-8 rounded-xl bg-amber-50 border border-amber-100 text-amber-600 flex items-center justify-center">
-                    <Layers size={16} />
+              <div className="bg-white border border-[#DFE1E6] rounded-lg p-4 shadow-xs">
+                <div className="flex items-center justify-between text-[#5E6C84] mb-2.5">
+                  <span className="text-[11px] font-semibold uppercase tracking-wider">Decomposed Artifacts</span>
+                  <div className="w-7 h-7 rounded bg-[#FAFBFC] border border-[#EBECF0] text-[#0052CC] flex items-center justify-center">
+                    <Layers size={14} />
                   </div>
                 </div>
-                <div className="text-3xl font-black text-[#172B4D] tracking-tight">{totalGeneratedWorkItems}</div>
-                <div className="flex items-center justify-between text-[11px] mt-2 pt-2 border-t border-slate-100">
-                  <span className="text-[#5E6C84]">Epics/Stories/Tasks:</span>
-                  <span className="text-amber-700 font-bold">{metrics.totalEpics} / {metrics.totalStories} / {metrics.totalTasks}</span>
+                <div className="text-2xl font-bold text-[#172B4D] tracking-tight">{totalGeneratedWorkItems}</div>
+                <div className="flex items-center justify-between text-[11px] mt-2 pt-2 border-t border-[#EBECF0]">
+                  <span className="text-[#5E6C84]">Backlog Items:</span>
+                  <span className="text-[#172B4D] font-medium">{metrics.totalEpics} / {metrics.totalStories} / {metrics.totalTasks}</span>
                 </div>
               </div>
 
@@ -678,7 +672,7 @@ The system must parse incoming multipart PDF documents, extract architectural sc
 
             {/* TELEMETRY ROW 2: SYSTEM HEALTH STRIP & TRAFFIC BREAKDOWN */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              
+
               {/* Traffic Sources Breakdown */}
               <div className="bg-white border border-[#DFE1E6] rounded-2xl p-6 shadow-xs space-y-5">
                 <div className="flex items-center justify-between border-b border-[#EBECF0] pb-3">
@@ -777,11 +771,10 @@ The system must parse incoming multipart PDF documents, extract architectural sc
                             {w.members_count || 0}
                           </td>
                           <td className="py-3 px-3">
-                            <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
-                              w.is_super_admin 
-                                ? 'bg-purple-50 text-purple-700 border border-purple-200' 
+                            <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${w.is_super_admin
+                                ? 'bg-purple-50 text-purple-700 border border-purple-200'
                                 : 'bg-blue-50 text-blue-700 border border-blue-200'
-                            }`}>
+                              }`}>
                               {w.is_super_admin ? 'SUPER_ADMIN' : 'SQUAD_LEAD'}
                             </span>
                           </td>
@@ -802,7 +795,7 @@ The system must parse incoming multipart PDF documents, extract architectural sc
         {/* ========================================================= */}
         {activeTab === 'api_keys' && (
           <div className="space-y-6 animate-in fade-in duration-200">
-            
+
             {/* Header / Pool Summary */}
             <div className="bg-white border border-[#DFE1E6] rounded-2xl p-6 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div className="flex items-center gap-3.5">
@@ -937,11 +930,10 @@ The system must parse incoming multipart PDF documents, extract architectural sc
                               <button
                                 type="button"
                                 onClick={() => handleToggleKeyActive(k)}
-                                className={`px-2.5 py-0.5 rounded-full text-[10px] font-extrabold transition-all cursor-pointer ${
-                                  k.is_active 
-                                    ? 'bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100' 
+                                className={`px-2.5 py-0.5 rounded-full text-[10px] font-extrabold transition-all cursor-pointer ${k.is_active
+                                    ? 'bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100'
                                     : 'bg-slate-100 text-slate-600 border border-slate-200 hover:bg-slate-200'
-                                }`}
+                                  }`}
                               >
                                 {k.is_active ? 'ACTIVE' : 'DISABLED'}
                               </button>
@@ -1041,7 +1033,7 @@ The system must parse incoming multipart PDF documents, extract architectural sc
         {/* ========================================================= */}
         {activeTab === 'tenants' && (
           <div className="space-y-6 animate-in fade-in duration-200">
-            
+
             {/* Header & Filters */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-5 rounded-2xl border border-[#DFE1E6] shadow-xs">
               <div>
@@ -1060,11 +1052,10 @@ The system must parse incoming multipart PDF documents, extract architectural sc
                       key={f.id}
                       type="button"
                       onClick={() => setWorkspaceFilter(f.id)}
-                      className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                        workspaceFilter === f.id
+                      className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${workspaceFilter === f.id
                           ? 'bg-[#0052CC] text-white shadow-2xs'
                           : 'text-slate-600 hover:text-slate-900'
-                      }`}
+                        }`}
                     >
                       {f.label}
                     </button>
@@ -1098,11 +1089,10 @@ The system must parse incoming multipart PDF documents, extract architectural sc
                         <div className="text-xs text-[#5E6C84] truncate">{w.name || 'Manager'}</div>
                       </div>
                     </div>
-                    <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold shrink-0 ${
-                      w.is_super_admin 
-                        ? 'bg-purple-50 text-purple-700 border border-purple-200' 
+                    <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold shrink-0 ${w.is_super_admin
+                        ? 'bg-purple-50 text-purple-700 border border-purple-200'
                         : 'bg-blue-50 text-blue-700 border border-blue-200'
-                    }`}>
+                      }`}>
                       {w.is_super_admin ? 'SUPER_ADMIN' : 'SQUAD'}
                     </span>
                   </div>
@@ -1147,7 +1137,7 @@ The system must parse incoming multipart PDF documents, extract architectural sc
         {/* ========================================================= */}
         {activeTab === 'rls_security' && (
           <div className="space-y-6 animate-in fade-in duration-200">
-            
+
             <div className="bg-white border border-[#DFE1E6] rounded-2xl p-6 shadow-xs space-y-4">
               <div className="flex items-center justify-between border-b border-[#EBECF0] pb-3">
                 <div className="flex items-center gap-3">
@@ -1203,31 +1193,31 @@ The system must parse incoming multipart PDF documents, extract architectural sc
       {/* 4. MODAL: ADD NEW AI KEY TO PLATFORM POOL */}
       {/* ========================================================= */}
       {showAddKeyModal && (
-        <div className="fixed inset-0 bg-black/40 backdrop-blur-xs z-50 flex items-center justify-center p-4 animate-in fade-in duration-150">
-          <div className="bg-white border border-[#DFE1E6] rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden animate-in zoom-in-95 duration-150">
-            
-            <div className="px-6 py-4 border-b border-[#EBECF0] flex items-center justify-between bg-slate-50/80">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-100 text-indigo-600 flex items-center justify-center">
-                  <Key size={20} />
+        <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4">
+          <div className="bg-white border border-[#DFE1E6] rounded-lg shadow-xl w-full max-w-lg overflow-hidden animate-in fade-in duration-150">
+
+            <div className="px-5 py-4 border-b border-[#EBECF0] flex items-center justify-between bg-white">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded bg-[#DEEBFF] text-[#0052CC] flex items-center justify-center">
+                  <Key size={16} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-sm text-[#172B4D]">Add AI Key to Failover Pool</h3>
+                  <h3 className="font-semibold text-sm text-[#172B4D]">Add AI Key to Failover Pool</h3>
                   <p className="text-[11px] text-[#5E6C84]">Keys are encrypted and masked on the server</p>
                 </div>
               </div>
-              <button 
+              <button
                 type="button"
                 onClick={() => setShowAddKeyModal(false)}
-                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 cursor-pointer"
+                className="p-1 rounded text-[#6B778C] hover:text-[#172B4D] hover:bg-[#F4F5F7] cursor-pointer"
               >
                 ✕
               </button>
             </div>
 
-            <form onSubmit={handleAddNewApiKey} className="p-6 space-y-4">
+            <form onSubmit={handleAddNewApiKey} className="p-5 space-y-4">
               <div>
-                <label className="block text-xs font-bold text-[#172B4D] mb-1">
+                <label className="block text-xs font-semibold text-[#5E6C84] uppercase tracking-wider mb-1">
                   Key Label / Alias <span className="text-rose-500">*</span>
                 </label>
                 <input
@@ -1236,13 +1226,13 @@ The system must parse incoming multipart PDF documents, extract architectural sc
                   placeholder="e.g. Gemini 1.5 Pro (Primary Production)"
                   value={newKeyForm.label}
                   onChange={(e) => setNewKeyForm({ ...newKeyForm, label: e.target.value })}
-                  className="w-full bg-[#FAFBFC] border border-[#DFE1E6] rounded-xl px-3.5 py-2.5 text-xs text-[#172B4D] placeholder-slate-400 focus:bg-white focus:ring-2 focus:ring-[#0052CC]"
+                  className="w-full bg-[#FAFBFC] border border-[#DFE1E6] rounded px-3 py-2 text-xs text-[#172B4D] placeholder-[#6B778C] focus:bg-white focus:outline-none focus:border-[#0052CC] focus:ring-1 focus:ring-[#0052CC]"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-bold text-[#172B4D] mb-1">
+                  <label className="block text-xs font-semibold text-[#5E6C84] uppercase tracking-wider mb-1">
                     Provider
                   </label>
                   <select
@@ -1252,7 +1242,7 @@ The system must parse incoming multipart PDF documents, extract architectural sc
                       const defaultModel = PROVIDER_MODELS[prov]?.[0]?.value || 'gemini-1.5-pro';
                       setNewKeyForm({ ...newKeyForm, provider: prov, model: defaultModel });
                     }}
-                    className="w-full bg-[#FAFBFC] border border-[#DFE1E6] rounded-xl px-3 py-2.5 text-xs font-semibold text-[#172B4D] focus:bg-white focus:ring-2 focus:ring-[#0052CC]"
+                    className="w-full bg-[#FAFBFC] border border-[#DFE1E6] rounded px-2.5 py-2 text-xs font-medium text-[#172B4D] focus:bg-white focus:outline-none focus:border-[#0052CC] focus:ring-1 focus:ring-[#0052CC]"
                   >
                     <option value="gemini">Google Gemini</option>
                     <option value="groq">Groq Cloud (Ultra-Fast)</option>
@@ -1262,13 +1252,13 @@ The system must parse incoming multipart PDF documents, extract architectural sc
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#172B4D] mb-1">
+                  <label className="block text-xs font-semibold text-[#5E6C84] uppercase tracking-wider mb-1">
                     Model
                   </label>
                   <select
                     value={newKeyForm.model}
                     onChange={(e) => setNewKeyForm({ ...newKeyForm, model: e.target.value })}
-                    className="w-full bg-[#FAFBFC] border border-[#DFE1E6] rounded-xl px-3 py-2.5 text-xs font-semibold text-[#172B4D] focus:bg-white focus:ring-2 focus:ring-[#0052CC]"
+                    className="w-full bg-[#FAFBFC] border border-[#DFE1E6] rounded px-2.5 py-2 text-xs font-medium text-[#172B4D] focus:bg-white focus:outline-none focus:border-[#0052CC] focus:ring-1 focus:ring-[#0052CC]"
                   >
                     {(PROVIDER_MODELS[newKeyForm.provider] || PROVIDER_MODELS.gemini).map(m => (
                       <option key={m.value} value={m.value}>{m.label}</option>
@@ -1278,7 +1268,7 @@ The system must parse incoming multipart PDF documents, extract architectural sc
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#172B4D] mb-1">
+                <label className="block text-xs font-semibold text-[#5E6C84] uppercase tracking-wider mb-1">
                   Secret API Key <span className="text-rose-500">*</span>
                 </label>
                 <input
@@ -1286,56 +1276,56 @@ The system must parse incoming multipart PDF documents, extract architectural sc
                   required
                   placeholder={
                     newKeyForm.provider === 'groq' ? 'gsk_...' :
-                    newKeyForm.provider === 'openai' ? 'sk-proj-...' :
-                    newKeyForm.provider === 'anthropic' ? 'sk-ant-...' :
-                    'AIzaSy...'
+                      newKeyForm.provider === 'openai' ? 'sk-proj-...' :
+                        newKeyForm.provider === 'anthropic' ? 'sk-ant-...' :
+                          'AIzaSy...'
                   }
                   value={newKeyForm.apiKey}
                   onChange={(e) => setNewKeyForm({ ...newKeyForm, apiKey: e.target.value })}
-                  className="w-full bg-[#FAFBFC] border border-[#DFE1E6] rounded-xl px-3.5 py-2.5 text-xs font-mono text-[#172B4D] placeholder-slate-400 focus:bg-white focus:ring-2 focus:ring-[#0052CC]"
+                  className="w-full bg-[#FAFBFC] border border-[#DFE1E6] rounded px-3 py-2 text-xs font-mono text-[#172B4D] placeholder-[#6B778C] focus:bg-white focus:outline-none focus:border-[#0052CC] focus:ring-1 focus:ring-[#0052CC]"
                 />
               </div>
 
-              <div className="flex items-center justify-between pt-2">
-                <a 
+              <div className="flex items-center justify-between pt-2 border-t border-[#EBECF0]">
+                <a
                   href={
                     newKeyForm.provider === 'groq' ? 'https://console.groq.com/keys' :
-                    newKeyForm.provider === 'openai' ? 'https://platform.openai.com/api-keys' :
-                    newKeyForm.provider === 'anthropic' ? 'https://console.anthropic.com/settings/keys' :
-                    'https://aistudio.google.com/app/apikey'
-                  } 
-                  target="_blank" 
-                  rel="noreferrer" 
-                  className="text-xs text-[#0052CC] hover:underline font-bold"
+                      newKeyForm.provider === 'openai' ? 'https://platform.openai.com/api-keys' :
+                        newKeyForm.provider === 'anthropic' ? 'https://console.anthropic.com/settings/keys' :
+                          'https://aistudio.google.com/app/apikey'
+                  }
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-xs text-[#0052CC] hover:underline font-medium"
                 >
-                  {newKeyForm.provider === 'groq' ? 'Get Free Groq API Key ↗' :
-                   newKeyForm.provider === 'openai' ? 'Get OpenAI API Key ↗' :
-                   newKeyForm.provider === 'anthropic' ? 'Get Anthropic API Key ↗' :
-                   'Get Free Gemini API Key ↗'}
+                  {newKeyForm.provider === 'groq' ? 'Get Groq Key ↗' :
+                    newKeyForm.provider === 'openai' ? 'Get OpenAI Key ↗' :
+                      newKeyForm.provider === 'anthropic' ? 'Get Anthropic Key ↗' :
+                        'Get Gemini Key ↗'}
                 </a>
 
                 <div className="flex items-center gap-2">
                   <button
                     type="button"
                     onClick={() => setShowAddKeyModal(false)}
-                    className="px-4 py-2 text-xs font-bold text-slate-600 hover:bg-slate-100 rounded-xl cursor-pointer"
+                    className="px-3.5 py-1.5 text-xs font-medium text-[#42526E] hover:bg-[#EBECF0] rounded cursor-pointer transition-colors"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
                     disabled={isAddingKey || !newKeyForm.apiKey.trim() || !newKeyForm.label.trim()}
-                    className="px-5 py-2 bg-[#0052CC] hover:bg-[#0747A6] text-white rounded-xl text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
+                    className="px-4 py-1.5 bg-[#0052CC] hover:bg-[#0747A6] active:bg-[#00388B] text-white rounded text-xs font-medium transition-colors shadow-xs flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
                   >
                     {isAddingKey ? (
                       <>
-                        <RefreshCw size={13} className="animate-spin" />
+                        <RefreshCw size={12} className="animate-spin" />
                         <span>Saving...</span>
                       </>
                     ) : (
                       <>
                         <Plus size={14} />
-                        <span>Save to Pool</span>
+                        <span>Save Key</span>
                       </>
                     )}
                   </button>

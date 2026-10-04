@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { UploadCloud, Loader2, Calendar, FileText, X, Sparkles, ChevronRight, CheckCircle2, Zap, FileCode, ArrowDown } from 'lucide-react';
+import { UploadCloud, Loader2, Calendar, FileText, X, FolderKanban, ChevronRight, CheckCircle2, Zap, FileCode, ArrowDown } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../context/AuthContext';
@@ -353,58 +353,58 @@ The platform must ingest unstructured customer prompt inputs, decompose them int
             {user?.organization || 'SprintX Core Software'}
           </Link>
           <ChevronRight size={12} />
-          <span className="text-[#172B4D] font-bold">AI Requirements Ingest</span>
+          <span className="text-[#172B4D] font-semibold">Import Requirements</span>
         </div>
 
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <h1 className="text-xl sm:text-2xl font-bold text-[#172B4D] tracking-tight">
-              Ingest Software Requirements Specification (SRS)
+            <h1 className="text-xl sm:text-2xl font-semibold text-[#172B4D] tracking-tight">
+              Import Requirements Specification
             </h1>
             <p className="text-xs text-[#5E6C84] mt-0.5">
-              Zero-token-waste engine: Converts documents to structured Markdown before AI decomposition.
+              Parse technical specifications into structured epics, user stories, and role-assigned backlog tasks.
             </p>
           </div>
         </div>
       </div>
 
       {/* Main Workspace Form */}
-      <div className="p-4 sm:p-6 bg-[#F4F5F7] flex-1 w-full">
-        <div className="w-full">
+      <div className="p-4 sm:p-6 bg-[#FAFBFC] flex-1 w-full">
+        <div className="max-w-4xl mx-auto">
           
           {/* Quick Presets */}
           <div className="mb-3.5 flex flex-wrap items-center justify-between gap-2">
-            <span className="text-xs font-bold text-[#5E6C84] uppercase tracking-wider">
-              Quick Load SRS Presets
+            <span className="text-xs font-semibold text-[#5E6C84] uppercase tracking-wider">
+              Sample Specifications
             </span>
             <div className="flex gap-2">
               <button
                 type="button"
                 onClick={() => loadPreset('fintech')}
-                className="px-3 py-1.5 text-xs font-semibold bg-white border border-[#DFE1E6] rounded-md hover:bg-[#DEEBFF] hover:text-[#0052CC] hover:border-[#B3D4FF] transition-all shadow-2xs cursor-pointer"
+                className="px-3 py-1.5 text-xs font-medium bg-white border border-[#DFE1E6] rounded text-[#172B4D] hover:bg-[#F4F5F7] transition-colors cursor-pointer"
               >
-                Fintech & Web3
+                Fintech & Payments
               </button>
               <button
                 type="button"
                 onClick={() => loadPreset('ai')}
-                className="px-3 py-1.5 text-xs font-semibold bg-white border border-[#DFE1E6] rounded-md hover:bg-[#DEEBFF] hover:text-[#0052CC] hover:border-[#B3D4FF] transition-all shadow-2xs cursor-pointer"
+                className="px-3 py-1.5 text-xs font-medium bg-white border border-[#DFE1E6] rounded text-[#172B4D] hover:bg-[#F4F5F7] transition-colors cursor-pointer"
               >
-                AI Agent Pipeline
+                Service Pipeline
               </button>
             </div>
           </div>
 
-          <div className="bg-white rounded-xl border border-[#DFE1E6] shadow-xs p-6 sm:p-8 w-full relative overflow-hidden">
+          <div className="bg-white rounded-lg border border-[#DFE1E6] p-6 sm:p-8 w-full relative shadow-xs">
             
             {/* Loading Overlay */}
             {loading && (
-              <div className="absolute inset-0 z-20 bg-white/95 backdrop-blur-xs flex flex-col items-center justify-center p-6 text-center animate-in fade-in duration-200">
-                <Loader2 className="w-10 h-10 text-[#0052CC] animate-spin mb-3" />
-                <h3 className="text-base font-bold text-[#172B4D]">Autonomous AI Decomposition in Progress</h3>
+              <div className="absolute inset-0 z-20 bg-white/95 flex flex-col items-center justify-center p-6 text-center rounded-lg">
+                <Loader2 className="w-8 h-8 text-[#0052CC] animate-spin mb-3" />
+                <h3 className="text-sm font-semibold text-[#172B4D]">Decomposing requirements into backlog...</h3>
                 <p className="text-xs text-[#5E6C84] mt-1 font-mono">{loadingStep}</p>
-                <div className="w-64 h-1.5 bg-gray-100 rounded-full overflow-hidden mt-4">
-                  <div className="h-full bg-[#0052CC] animate-pulse rounded-full w-3/4" />
+                <div className="w-56 h-1 bg-[#EBECF0] rounded-full overflow-hidden mt-4">
+                  <div className="h-full bg-[#0052CC] animate-pulse rounded-full w-2/3" />
                 </div>
               </div>
             )}
@@ -412,7 +412,7 @@ The platform must ingest unstructured customer prompt inputs, decompose them int
             <form onSubmit={handleSubmit} className="space-y-5">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-xs font-bold text-[#5E6C84] uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-semibold text-[#5E6C84] uppercase tracking-wider mb-1.5">
                     Sprint / Project Name <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -421,12 +421,12 @@ The platform must ingest unstructured customer prompt inputs, decompose them int
                     placeholder="e.g. Core Payment Orchestrator (SPX)"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full py-2.5 px-3.5 text-xs border border-[#DFE1E6] rounded-lg bg-[#FAFBFC] focus:bg-white focus:ring-2 focus:ring-[#0052CC] text-[#172B4D] transition-all"
+                    className="w-full py-2 px-3 text-xs border border-[#DFE1E6] rounded bg-white focus:outline-none focus:border-[#0052CC] focus:ring-1 focus:ring-[#0052CC] text-[#172B4D] transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#5E6C84] uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-semibold text-[#5E6C84] uppercase tracking-wider mb-1.5">
                     Target Sprint Deadline
                   </label>
                   <div className="relative">
@@ -434,22 +434,22 @@ The platform must ingest unstructured customer prompt inputs, decompose them int
                       type="date"
                       value={formData.deadline}
                       onChange={(e) => setFormData({ ...formData, deadline: e.target.value })}
-                      className="w-full py-2.5 px-3.5 text-xs border border-[#DFE1E6] rounded-lg bg-[#FAFBFC] focus:bg-white focus:ring-2 focus:ring-[#0052CC] text-[#172B4D] transition-all"
+                      className="w-full py-2 px-3 text-xs border border-[#DFE1E6] rounded bg-white focus:outline-none focus:border-[#0052CC] focus:ring-1 focus:ring-[#0052CC] text-[#172B4D] transition-colors"
                     />
                   </div>
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#5E6C84] uppercase tracking-wider mb-1.5">
-                  Upload Specification PDF or Document
+                <label className="block text-xs font-semibold text-[#5E6C84] uppercase tracking-wider mb-1.5">
+                  Specification Document (PDF, TXT, MD)
                 </label>
                 <div
                   onDragEnter={handleDrag}
                   onDragLeave={handleDrag}
                   onDragOver={handleDrag}
                   onDrop={handleDrop}
-                  className={`p-6 border-2 border-dashed rounded-xl text-center transition-all cursor-pointer ${
+                  className={`p-6 border border-dashed rounded-lg text-center transition-colors cursor-pointer ${
                     dragActive
                       ? 'border-[#0052CC] bg-[#DEEBFF]/30'
                       : 'border-[#DFE1E6] bg-[#FAFBFC] hover:border-[#4C9AFF] hover:bg-white'
@@ -465,8 +465,8 @@ The platform must ingest unstructured customer prompt inputs, decompose them int
                   />
                   {file ? (
                     <div className="flex flex-col items-center justify-center gap-2">
-                      <div className="flex items-center gap-2 text-xs font-bold text-[#0052CC]">
-                        <FileText size={18} />
+                      <div className="flex items-center gap-2 text-xs font-medium text-[#0052CC]">
+                        <FileText size={16} />
                         <span>{file.name} ({(file.size / 1024).toFixed(1)} KB)</span>
                         <button
                           type="button"
@@ -474,36 +474,36 @@ The platform must ingest unstructured customer prompt inputs, decompose them int
                             e.stopPropagation();
                             handleRemoveFile();
                           }}
-                          className="text-gray-400 hover:text-red-500 ml-2 p-1 rounded hover:bg-red-50 transition-colors cursor-pointer"
+                          className="text-[#6B778C] hover:text-red-600 ml-1 p-0.5 rounded transition-colors cursor-pointer"
                         >
-                          <X size={16} />
+                          <X size={14} />
                         </button>
                       </div>
 
                       {parsingFile && (
-                        <div className="flex items-center gap-2 text-[11px] text-blue-600 font-medium mt-1">
+                        <div className="flex items-center gap-2 text-[11px] text-[#0052CC] font-medium mt-1">
                           <Loader2 size={12} className="animate-spin" />
-                          <span>Converting PDF into dense Markdown structure...</span>
+                          <span>Extracting structured Markdown text...</span>
                         </div>
                       )}
 
                       {tokenOptimization && !parsingFile && (
-                        <div className="mt-2 px-3 py-1.5 bg-emerald-50 border border-emerald-200 rounded-lg flex items-center gap-2 text-emerald-800 text-[11px]">
-                          <Zap size={13} className="text-emerald-600 flex-shrink-0 fill-emerald-500" />
+                        <div className="mt-2 px-3 py-1.5 bg-emerald-50 border border-emerald-200 rounded flex items-center gap-2 text-emerald-800 text-[11px]">
+                          <Zap size={12} className="text-emerald-600 flex-shrink-0" />
                           <span>
-                            <strong>Token Optimizer:</strong> {tokenOptimization.numPages} PDF page(s) $\rightarrow$ Clean Markdown (~{tokenOptimization.tokensSavedPercent}% token savings, ~{tokenOptimization.optimizedTokens} tokens)
+                            Parsed {tokenOptimization.numPages} page(s) into Markdown (~{tokenOptimization.tokensSavedPercent}% token reduction, ~{tokenOptimization.optimizedTokens} tokens)
                           </span>
                         </div>
                       )}
                     </div>
                   ) : (
                     <div>
-                      <UploadCloud className="w-9 h-9 text-[#0052CC] mx-auto mb-2" />
-                      <p className="text-xs font-bold text-[#172B4D]">
-                        Click to browse or drag & drop requirement document (PDF, TXT, MD)
+                      <UploadCloud className="w-8 h-8 text-[#5E6C84] mx-auto mb-2" />
+                      <p className="text-xs font-semibold text-[#172B4D]">
+                        Click to browse or drag & drop requirement document
                       </p>
-                      <p className="text-[11px] text-[#5E6C84] mt-1">
-                        High-efficiency client parsing converts PDFs to Markdown with up to 90% token reduction
+                      <p className="text-[11px] text-[#5E6C84] mt-0.5">
+                        Client-side PDF text extraction extracts clean Markdown before ingestion
                       </p>
                     </div>
                   )}
@@ -512,38 +512,39 @@ The platform must ingest unstructured customer prompt inputs, decompose them int
 
               <div>
                 <div className="flex items-center justify-between mb-1.5">
-                  <label className="block text-xs font-bold text-[#5E6C84] uppercase tracking-wider">
-                    Requirement Specification / Structured Markdown
+                  <label className="block text-xs font-semibold text-[#5E6C84] uppercase tracking-wider">
+                    Specification Content
                   </label>
                   {tokenOptimization?.markdown && (
-                    <span className="text-[11px] text-emerald-700 font-medium bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
-                      ⚡ Token Optimized (~{tokenOptimization.optimizedTokens} tokens)
+                    <span className="inline-flex items-center gap-1 text-[11px] text-emerald-700 font-medium bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                      <Zap size={11} className="text-emerald-600" />
+                      Optimized (~{tokenOptimization.optimizedTokens} tokens)
                     </span>
                   )}
                 </div>
                 <textarea
-                  rows={7}
-                  placeholder="Paste RFC architecture text, PRD sections, or API specifications here..."
+                  rows={8}
+                  placeholder="Paste specification text, user stories, or architecture notes..."
                   value={formData.content}
                   onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-                  className="w-full py-3 px-3.5 text-xs border border-[#DFE1E6] rounded-lg bg-[#FAFBFC] focus:bg-white focus:ring-2 focus:ring-[#0052CC] text-[#172B4D] font-mono leading-relaxed transition-all"
+                  className="w-full py-2.5 px-3 text-xs border border-[#DFE1E6] rounded bg-[#FAFBFC] focus:bg-white focus:outline-none focus:border-[#0052CC] focus:ring-1 focus:ring-[#0052CC] text-[#172B4D] font-mono leading-relaxed transition-colors"
                 />
               </div>
 
-              <div className="pt-3 flex items-center justify-end gap-3 border-t border-slate-100">
+              <div className="pt-3 flex items-center justify-end gap-3 border-t border-[#EBECF0]">
                 <Link
                   to="/board"
-                  className="px-4 py-2.5 text-xs font-semibold text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+                  className="px-3.5 py-2 text-xs font-medium text-[#42526E] hover:bg-[#EBECF0] rounded transition-colors"
                 >
                   Cancel
                 </Link>
                 <button
                   type="submit"
                   disabled={loading || (!formData.content && !file)}
-                  className="flex items-center gap-2 px-6 py-2.5 rounded-lg font-bold text-xs text-white bg-[#0052CC] hover:bg-[#0747A6] active:bg-[#00388B] shadow-xs transition-all disabled:opacity-50 cursor-pointer"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded font-medium text-xs text-white bg-[#0052CC] hover:bg-[#0747A6] active:bg-[#00388B] transition-colors disabled:opacity-50 cursor-pointer"
                 >
-                  <Sparkles size={14} />
-                  <span>Generate Sprint Board</span>
+                  <FolderKanban size={14} />
+                  <span>Generate Sprint Backlog</span>
                 </button>
               </div>
             </form>

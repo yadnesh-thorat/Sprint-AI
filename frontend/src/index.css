@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
   body {
-    @apply bg-gray-50 text-gray-900 font-sans antialiased;
+    @apply bg-[#FAFBFC] text-[#172B4D] font-sans antialiased;
   }
 }
 
-.glass-panel {
-  @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-xl;
-}

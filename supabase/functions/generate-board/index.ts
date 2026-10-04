@@ -2,7 +2,12 @@
 // Runs on Deno — API keys are set via: supabase secrets set GEMINI_API_KEY=...
 // Keys are NEVER exposed to the browser.
 
-import { serve } from "https://deno.land/std@0.208.0/http/server.ts";
+declare const Deno: {
+  env: {
+    get: (key: string) => string | undefined;
+  };
+  serve: (handler: (req: Request) => Promise<Response> | Response) => void;
+};
 
 const GEMINI_API_KEY = Deno.env.get("GEMINI_API_KEY");
 const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
@@ -12,7 +17,7 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-serve(async (req) => {
+Deno.serve(async (req: Request) => {
   // Handle CORS preflight
   if (req.method === "OPTIONS") {
     return new Response("ok", { headers: corsHeaders });
@@ -75,16 +80,17 @@ serve(async (req) => {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 200,
     });
-  } catch (err) {
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : String(err);
     console.error("Edge Function error:", err);
-    return new Response(JSON.stringify({ error: err.message }), {
+    return new Response(JSON.stringify({ error: message }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 500,
     });
   }
 });
 
-function buildPrompt(projectName) {
+function buildPrompt(projectName: string) {
   return `You are an expert Agile Project Manager and Software Architect.
 
 Analyze the following Software Requirements Specification (SRS) document and generate a complete, detailed Agile project board in JSON format.

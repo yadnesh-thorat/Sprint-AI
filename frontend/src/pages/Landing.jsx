@@ -132,11 +132,11 @@ export default function Landing() {
       </header>
 
       {/* 2. PRODUCT HERO SECTION */}
-      <section className="pt-14 pb-16 sm:pt-20 sm:pb-20 bg-white border-b border-[#DFE1E6]">
+      <section className="pt-5 pb-14 sm:pt-6 sm:pb-16 bg-white border-b border-[#DFE1E6]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 
           {/* Product Category Label */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-slate-100 border border-slate-200 text-[#5E6C84] text-xs font-medium mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-slate-100 border border-slate-200 text-[#5E6C84] text-xs font-medium mb-4">
             <span className="w-1.5 h-1.5 rounded-full bg-[#0052CC]" />
             <span>Agile Sprint Planning &amp; Backlog Management</span>
           </div>

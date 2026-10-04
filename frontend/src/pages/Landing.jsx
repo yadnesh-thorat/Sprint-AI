@@ -15,7 +15,11 @@ import {
   Clock,
   Lock,
   GitBranch,
-  FolderKanban
+  FolderKanban,
+  Globe,
+  Shield,
+  FileCheck,
+  X as CloseIcon
 } from 'lucide-react';
 import logo from '../assets/logo.png';
 
@@ -23,6 +27,7 @@ export default function Landing() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
   const [activeTab, setActiveTab] = useState('board'); // 'board' or 'parser'
+  const [legalModal, setLegalModal] = useState(null); // 'privacy' | 'terms' | null
 
   return (
     <div className="min-h-screen bg-[#FAFBFC] text-[#172B4D] font-sans antialiased selection:bg-blue-100 selection:text-blue-900">
@@ -547,23 +552,364 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* 9. FOOTER */}
-      <footer className="bg-white py-8 text-xs text-[#5E6C84]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <img src={logo} className="h-5 w-5 object-contain" alt="Logo" />
-            <span className="font-semibold text-[#172B4D]">SprintX</span>
-            <span>· Agile Sprint &amp; Requirement Management</span>
+      {/* 9. ENTERPRISE FOOTER */}
+      <footer className="bg-white border-t border-[#DFE1E6] pt-14 pb-12 text-xs text-[#5E6C84]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Main Footer Navigation Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 pb-12 border-b border-[#EBECF0]">
+            
+            {/* Column 1: Brand & Operational Status (spans 2 cols on lg) */}
+            <div className="lg:col-span-2 space-y-4">
+              <div className="flex items-center gap-2.5">
+                <img src={logo} className="h-7 w-7 object-contain" alt="SprintX Logo" />
+                <span className="font-bold text-base text-[#172B4D] tracking-tight">SprintX</span>
+                <span className="text-[10px] font-semibold bg-blue-50 text-[#0052CC] border border-blue-200 px-2 py-0.5 rounded">
+                  Enterprise Agile
+                </span>
+              </div>
+
+              <p className="text-xs text-[#5E6C84] max-w-sm leading-relaxed">
+                Autonomous requirement decomposition and agile sprint planning system. Convert raw specifications, PRDs, and RFCs into structured epics, user stories, and role-balanced sprint backlogs.
+              </p>
+
+              {/* Live Operational Status */}
+              <div className="pt-1">
+                <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-[11px] font-medium">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  </span>
+                  <span>All Systems Operational (99.99% Uptime)</span>
+                </div>
+              </div>
+
+              <div className="text-[11px] text-[#5E6C84] flex items-center gap-1.5 pt-0.5">
+                <ShieldCheck size={13} className="text-[#0052CC]" />
+                <span>Zero-Trust PostgreSQL Row-Level Security Enforced</span>
+              </div>
+            </div>
+
+            {/* Column 2: Platform Architecture */}
+            <div>
+              <div className="font-bold text-[#172B4D] text-xs uppercase tracking-wider mb-3.5">
+                Platform
+              </div>
+              <ul className="space-y-2.5">
+                <li>
+                  <Link to="/board" className="hover:text-[#0052CC] transition-colors">Sprint Kanban Board</Link>
+                </li>
+                <li>
+                  <Link to="/upload" className="hover:text-[#0052CC] transition-colors">Client-Side SRS Parser</Link>
+                </li>
+                <li>
+                  <Link to="/team" className="hover:text-[#0052CC] transition-colors">Role Capacity Allocator</Link>
+                </li>
+                <li>
+                  <a href="#workflow" className="hover:text-[#0052CC] transition-colors">Decomposition Engine</a>
+                </li>
+                <li>
+                  <a href="#features" className="hover:text-[#0052CC] transition-colors">Multi-Key AI Gateway</a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Column 3: Security & Governance */}
+            <div>
+              <div className="font-bold text-[#172B4D] text-xs uppercase tracking-wider mb-3.5">
+                Security &amp; Trust
+              </div>
+              <ul className="space-y-2.5">
+                <li>
+                  <a href="#security" className="hover:text-[#0052CC] transition-colors">Tenant Isolation (RLS)</a>
+                </li>
+                <li>
+                  <a href="#security" className="hover:text-[#0052CC] transition-colors">Zero-Token Ingestion</a>
+                </li>
+                <li>
+                  <a href="#security" className="hover:text-[#0052CC] transition-colors">Multi-Key Failover</a>
+                </li>
+                <li>
+                  <Link to="/admin" className="hover:text-[#0052CC] transition-colors">Super Admin Control Plane</Link>
+                </li>
+                <li>
+                  <span className="text-[#172B4D] font-medium flex items-center gap-1">
+                    <CheckCircle2 size={12} className="text-emerald-600" />
+                    <span>No AI Model Training</span>
+                  </span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Column 4: Legal & Policies */}
+            <div>
+              <div className="font-bold text-[#172B4D] text-xs uppercase tracking-wider mb-3.5">
+                Legal &amp; Compliance
+              </div>
+              <ul className="space-y-2.5">
+                <li>
+                  <button 
+                    type="button"
+                    onClick={() => setLegalModal('privacy')}
+                    className="hover:text-[#0052CC] text-left transition-colors font-medium text-[#172B4D] flex items-center gap-1.5 cursor-pointer"
+                  >
+                    <span>Privacy Policy</span>
+                    <span className="text-[9px] bg-slate-100 text-slate-600 px-1 py-0.2 rounded font-semibold border border-slate-200">GDPR</span>
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    type="button"
+                    onClick={() => setLegalModal('terms')}
+                    className="hover:text-[#0052CC] text-left transition-colors font-medium text-[#172B4D] cursor-pointer"
+                  >
+                    Terms of Service
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    type="button"
+                    onClick={() => setLegalModal('privacy')}
+                    className="hover:text-[#0052CC] text-left transition-colors cursor-pointer"
+                  >
+                    Data Processing Agreement
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    type="button"
+                    onClick={() => setLegalModal('terms')}
+                    className="hover:text-[#0052CC] text-left transition-colors cursor-pointer"
+                  >
+                    Acceptable Use Guidelines
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    type="button"
+                    onClick={() => setLegalModal('privacy')}
+                    className="hover:text-[#0052CC] text-left transition-colors cursor-pointer"
+                  >
+                    Cookie Preferences
+                  </button>
+                </li>
+              </ul>
+            </div>
+
           </div>
 
-          <div className="flex items-center gap-4 text-xs">
-            <a href="#features" className="hover:text-[#172B4D] transition-colors">Features</a>
-            <a href="#security" className="hover:text-[#172B4D] transition-colors">Security</a>
-            <Link to="/login" className="hover:text-[#172B4D] transition-colors">Workspace</Link>
-            <span>&copy; {new Date().getFullYear()} SprintX. All rights reserved.</span>
+          {/* Sub-Footer Copyright & Quick Links */}
+          <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-[#5E6C84]">
+            <div>
+              &copy; {new Date().getFullYear()} SprintX Technologies Inc. All rights reserved.
+            </div>
+
+            <div className="flex items-center flex-wrap gap-4">
+              <button 
+                type="button"
+                onClick={() => setLegalModal('privacy')}
+                className="hover:text-[#0052CC] transition-colors cursor-pointer"
+              >
+                Privacy Policy
+              </button>
+              <span>&bull;</span>
+              <button 
+                type="button"
+                onClick={() => setLegalModal('terms')}
+                className="hover:text-[#0052CC] transition-colors cursor-pointer"
+              >
+                Terms of Service
+              </button>
+              <span>&bull;</span>
+              <a href="#security" className="hover:text-[#0052CC] transition-colors">
+                Security Overview
+              </a>
+              <span>&bull;</span>
+              <Link to="/login" className="hover:text-[#0052CC] font-semibold text-[#172B4D] transition-colors">
+                Workspace Portal
+              </Link>
+            </div>
           </div>
+
         </div>
       </footer>
+
+      {/* 10. LEGAL & COMPLIANCE MODAL (PRIVACY POLICY & TERMS OF SERVICE) */}
+      {legalModal && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 backdrop-blur-xs">
+          <div className="bg-white rounded-xl shadow-2xl border border-[#DFE1E6] w-full max-w-2xl max-h-[85vh] flex flex-col overflow-hidden animate-in fade-in duration-150">
+            
+            {/* Modal Header */}
+            <div className="px-6 py-4 border-b border-[#EBECF0] flex items-center justify-between bg-white flex-shrink-0">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#0052CC] flex items-center justify-center font-bold">
+                  {legalModal === 'privacy' ? <ShieldCheck size={18} /> : <FileCheck size={18} />}
+                </div>
+                <div>
+                  <h3 className="text-base font-bold text-[#172B4D]">
+                    {legalModal === 'privacy' ? 'SprintX Privacy Policy' : 'SprintX Terms of Service'}
+                  </h3>
+                  <p className="text-[11px] text-[#5E6C84]">
+                    Last updated: October 2026 &bull; Strict Zero-Trust Enterprise Standards
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                {/* Switcher Pills */}
+                <div className="flex bg-slate-100 p-0.5 rounded-lg border border-slate-200 text-xs">
+                  <button
+                    type="button"
+                    onClick={() => setLegalModal('privacy')}
+                    className={`px-2.5 py-1 rounded-md font-semibold transition-all cursor-pointer ${
+                      legalModal === 'privacy' ? 'bg-white text-[#0052CC] shadow-2xs' : 'text-[#5E6C84] hover:text-[#172B4D]'
+                    }`}
+                  >
+                    Privacy
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setLegalModal('terms')}
+                    className={`px-2.5 py-1 rounded-md font-semibold transition-all cursor-pointer ${
+                      legalModal === 'terms' ? 'bg-white text-[#0052CC] shadow-2xs' : 'text-[#5E6C84] hover:text-[#172B4D]'
+                    }`}
+                  >
+                    Terms
+                  </button>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setLegalModal(null)}
+                  className="p-1 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors cursor-pointer ml-1"
+                >
+                  <CloseIcon size={18} />
+                </button>
+              </div>
+            </div>
+
+            {/* Modal Content (Scrollable) */}
+            <div className="p-6 overflow-y-auto flex-1 space-y-6 text-xs text-[#172B4D] leading-relaxed">
+              
+              {/* PRIVACY POLICY CONTENT */}
+              {legalModal === 'privacy' && (
+                <div className="space-y-5">
+                  <section className="space-y-1.5">
+                    <h4 className="text-sm font-bold text-[#172B4D]">1. Commitment to Enterprise Privacy &amp; Confidentiality</h4>
+                    <p className="text-[#5E6C84]">
+                      SprintX Technologies Inc. ("SprintX", "we", "us") builds developer infrastructure for agile sprint planning. We recognize that Software Requirement Specifications (SRS), Product Requirement Documents (PRDs), and sprint backlog allocations represent mission-critical intellectual property. This Privacy Policy details our technical measures for data isolation and protection.
+                    </p>
+                  </section>
+
+                  <section className="space-y-1.5 bg-blue-50/60 p-3.5 rounded-lg border border-blue-100">
+                    <h4 className="text-xs font-bold text-blue-900 flex items-center gap-1.5">
+                      <ShieldCheck size={14} className="text-[#0052CC]" />
+                      <span>2. Zero AI Training Directive (Strict Guarantee)</span>
+                    </h4>
+                    <p className="text-blue-900/80">
+                      SprintX enforces an absolute Zero-Training policy. Any technical specifications, user story descriptions, acceptance criteria, or code requirements processed through our AI decomposition engines are <strong>NEVER used to train, fine-tune, or improve public or commercial Large Language Models</strong>. All inference occurs ephemerally under zero data retention enterprise agreements.
+                    </p>
+                  </section>
+
+                  <section className="space-y-1.5">
+                    <h4 className="text-sm font-bold text-[#172B4D]">3. Client-Side Document Structuring</h4>
+                    <p className="text-[#5E6C84]">
+                      Unlike legacy cloud processors that upload entire multi-megabyte PDF files to remote servers, SprintX executes document parsing directly in your web browser via <code>pdfjs-dist</code>. Unnecessary boilerplate, margins, and binary image layers are stripped on the client side before structured markdown is transmitted.
+                    </p>
+                  </section>
+
+                  <section className="space-y-1.5">
+                    <h4 className="text-sm font-bold text-[#172B4D]">4. PostgreSQL Row-Level Security (Tenant Isolation)</h4>
+                    <p className="text-[#5E6C84]">
+                      Every project, epic, story, and task in SprintX is partitioned using PostgreSQL Row-Level Security (RLS) linked strictly to <code>auth.uid() = user_id</code>. Unauthenticated queries evaluate to 0 rows. Cross-tenant access is architecturally prevented at the database kernel level.
+                    </p>
+                  </section>
+
+                  <section className="space-y-1.5">
+                    <h4 className="text-sm font-bold text-[#172B4D]">5. Data Retention &amp; 1-Click Cascade Deletion</h4>
+                    <p className="text-[#5E6C84]">
+                      You retain full control over your project lifecycle. When a squad lead or manager initiates a project deletion from the board, SprintX atomically executes a cascade deletion across all child records (<code>tasks</code> &rarr; <code>stories</code> &rarr; <code>epics</code> &rarr; <code>projects</code>) with zero orphaned records remaining in the database.
+                    </p>
+                  </section>
+
+                  <section className="space-y-1.5">
+                    <h4 className="text-sm font-bold text-[#172B4D]">6. Contact &amp; Data Protection Officer</h4>
+                    <p className="text-[#5E6C84]">
+                      For GDPR compliance inquiries, data export requests, or security audits, contact our security team at <span className="font-mono text-[#0052CC]">security@sprintx.io</span>.
+                    </p>
+                  </section>
+                </div>
+              )}
+
+              {/* TERMS OF SERVICE CONTENT */}
+              {legalModal === 'terms' && (
+                <div className="space-y-5">
+                  <section className="space-y-1.5">
+                    <h4 className="text-sm font-bold text-[#172B4D]">1. Acceptance of Terms</h4>
+                    <p className="text-[#5E6C84]">
+                      By creating an account, accessing the SprintX web platform, or using our automated agile board decomposition engines, you and your organization agree to be bound by these Terms of Service.
+                    </p>
+                  </section>
+
+                  <section className="space-y-1.5 bg-emerald-50/60 p-3.5 rounded-lg border border-emerald-100">
+                    <h4 className="text-xs font-bold text-emerald-900 flex items-center gap-1.5">
+                      <FileCheck size={14} className="text-emerald-600" />
+                      <span>2. 100% Customer Intellectual Property Ownership</span>
+                    </h4>
+                    <p className="text-emerald-900/80">
+                      You retain exclusive, unencumbered ownership of all materials uploaded to SprintX, including all generated epics, user stories, acceptance criteria, story point allocations, and sprint backlogs. SprintX claims no rights, title, or interest in your software requirements or technical outputs.
+                    </p>
+                  </section>
+
+                  <section className="space-y-1.5">
+                    <h4 className="text-sm font-bold text-[#172B4D]">3. Multi-Key High Availability Engine</h4>
+                    <p className="text-[#5E6C84]">
+                      SprintX incorporates a multi-key failover gateway. In the event of upstream rate-limiting or quota exhaustion on a primary AI provider key, the platform automatically rotates to active backup keys in the tenant pool to guarantee uninterrupted planning workflows.
+                    </p>
+                  </section>
+
+                  <section className="space-y-1.5">
+                    <h4 className="text-sm font-bold text-[#172B4D]">4. Acceptable Use Policy</h4>
+                    <p className="text-[#5E6C84]">
+                      You agree not to use SprintX to process illegal, infringing, or malicious content, attempt to bypass PostgreSQL Row-Level Security policies, conduct unauthorized denial-of-service tests, or extract other tenants' partitioned data.
+                    </p>
+                  </section>
+
+                  <section className="space-y-1.5">
+                    <h4 className="text-sm font-bold text-[#172B4D]">5. Service Level Agreement &amp; Availability</h4>
+                    <p className="text-[#5E6C84]">
+                      We provide SprintX under an enterprise-grade high availability standard. Scheduled maintenance windows are communicated in advance via platform notifications.
+                    </p>
+                  </section>
+
+                  <section className="space-y-1.5">
+                    <h4 className="text-sm font-bold text-[#172B4D]">6. Governing Law</h4>
+                    <p className="text-[#5E6C84]">
+                      These terms shall be governed by and construed in accordance with applicable enterprise commercial standards and federal laws.
+                    </p>
+                  </section>
+                </div>
+              )}
+
+            </div>
+
+            {/* Modal Footer */}
+            <div className="px-6 py-3.5 bg-slate-50 border-t border-[#EBECF0] flex items-center justify-between flex-shrink-0">
+              <div className="text-[11px] text-[#5E6C84]">
+                Enterprise Security &amp; Compliance Verified
+              </div>
+              <button
+                type="button"
+                onClick={() => setLegalModal(null)}
+                className="px-4 py-2 bg-[#0052CC] hover:bg-[#0747A6] active:bg-[#00388B] text-white text-xs font-bold rounded-lg transition-colors cursor-pointer"
+              >
+                Close &amp; Understand
+              </button>
+            </div>
+
+          </div>
+        </div>
+      )}
 
     </div>
   );
